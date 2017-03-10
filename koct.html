@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Koha offline circulation tool</title>
+        <link rel="icon" href="icons/koha-32.png"/>
+        <link rel="stylesheet" href="koct.css"/>
+    </head>
+
+    <body>
+        <h1>Koha offline circulation tool</h1>
+
+        <div id="messages"></div>
+
+        <h2>Checkout</h2>
+        <form id="checkout-form">
+            <label>
+                Patron barcode
+                <input type="text" name="patron_barcode"/>
+            </label>
+            <label>
+                Item barcode
+                <input type="text" name="item_barcode"/>
+            </label>
+            <button type="submit">Checkout</button>
+        </form>
+
+        <h2>Checkin</h2>
+        <form id="checkin-form">
+            <label>
+                Item barcode
+                <input type="text" name="item_barcode"/>
+            </label>
+            <button type="submit">Checkin</button>
+        </form>
+
+        <h2>Transactions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date/Time</th>
+                    <th>Action</th>
+                    <th>Cardnumber</th>
+                    <th>Item</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" id="send-to-koha">Send to Koha</button>
+        <button type="button" id="apply-directly">Apply directly</button>
+        <button type="button" id="erase">Erase</button>
+
+        <script src="koct.js"></script>
+    </body>
+</html>

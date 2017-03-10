@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "Koha Offline Circulation Tool",
+    "version": "0.4.0",
+
+    "icons": {
+        "48": "icons/koha-48.png",
+        "96": "icons/koha-96.png"
+    },
+
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+
+    "browser_action": {
+        "default_icon": "icons/koha-32.png",
+        "default_title": "Koha Offline Circulation Tool"
+    },
+
+    "background": {
+        "scripts": ["background-script.js"]
+    },
+
+    "options_ui": {
+        "page": "options.html"
+    }
+}
