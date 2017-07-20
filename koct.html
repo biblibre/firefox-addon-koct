@@ -17,11 +17,11 @@
         <form id="checkout-form">
             <label>
                 Patron barcode
-                <input type="text" name="patron_barcode"/>
+                <input type="text" id="issue_patron_barcode"/>
             </label>
             <label>
                 Item barcode
-                <input type="text" name="item_barcode"/>
+                <input type="text" id="issue_item_barcode"/>
             </label>
             <button type="submit">Checkout</button>
         </form>
@@ -30,7 +30,7 @@
         <form id="checkin-form">
             <label>
                 Item barcode
-                <input type="text" name="item_barcode"/>
+                <input type="text" id="return_item_barcode"/>
             </label>
             <button type="submit">Checkin</button>
         </form>
@@ -46,14 +46,7 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
+            <tbody id="transactions_table_tbody">
             </tbody>
         </table>
 
