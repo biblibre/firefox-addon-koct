@@ -36,21 +36,21 @@ document.querySelector('#checkin-form button[type="submit"]').addEventListener('
 
 document.querySelector('#send-to-koha').addEventListener('click', function(e) {
     e.preventDefault();
-    alert('Sent to Koha');
+    commit(true);
 });
 
 document.querySelector('#apply-directly').addEventListener('click', function(e) {
     e.preventDefault();
-    alert('Applied directly');
+    commit();
 });
 
 document.querySelector('#erase').addEventListener('click', function(e) {
     e.preventDefault();
-    alert('Erased');
+    clear();
 });
 
 function save(type) {
-
+    var currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
     switch (type) {
         case 'issue': 
 			var open = indexedDB.open('koct');
@@ -67,7 +67,7 @@ function save(type) {
 				var store = tx.objectStore("offlinecirc");
 				var patronbarcode = document.getElementById('issue_patron_barcode').value;
 				var itembarcode = document.getElementById('issue_item_barcode').value;
-				store.add({timestamp: "1", action: "issue", patronbarcode: patronbarcode, itembarcode: itembarcode, status: "status"});
+				store.add({timestamp: currentDate, action: "issue", patronbarcode: patronbarcode, itembarcode: itembarcode, status: "Local"});
 				document.getElementById('issue_item_barcode').value = '';
 				document.getElementById('issue_item_barcode').focus();
 			};
@@ -88,7 +88,7 @@ function save(type) {
 				var store = tx.objectStore("offlinecirc");
 				var patronbarcode = document.getElementById('issue_patron_barcode').value;
 				var itembarcode = document.getElementById('return_item_barcode').value;
-				store.add({timestamp: "1", action: "return", patronbarcode: null, itembarcode: itembarcode, status: "status"});
+				store.add({timestamp: currentDate, action: "return", patronbarcode: '', itembarcode: itembarcode, status: "Local"});
 				document.getElementById('return_item_barcode').value = '';
 				document.getElementById('return_item_barcode').focus();
 			};
@@ -122,3 +122,62 @@ function updateTable() {
 	};
 
 }
+
+function clear() {
+    var open = indexedDB.open('koct');
+	open.onsuccess = function() {
+		var db = open.result;
+		var tx = db.transaction("offlinecirc", "readwrite");
+		var store = tx.objectStore("offlinecirc");
+		var request = store.clear();
+    };
+    updateTable();
+}
+
+function commit( pending ) {
+	var open = indexedDB.open('koct');
+	open.onsuccess = function() {
+		var db = open.result;
+		var tx = db.transaction("offlinecirc", "readonly");
+		var store = tx.objectStore("offlinecirc");
+		//TODO: Add only local elements
+		var request = store.getAll();
+		request.onsuccess = function(evt) {
+			var keys = ['server', 'branchcode', 'login', 'password'];
+			var prefs;
+			browser.storage.local.get(keys).then(function(config) {
+
+				var url = config["server"] + "/cgi-bin/koha/offline_circ/service.pl";
+				results = request.result;
+				for (var i = 0; i < results.length; i++) {
+					var circ = results[i];
+					var params = "userid="      + config["login"];
+					params    += "&password="   + config["password"];
+					params    += "&branchcode=" + config["branchcode"];
+					params    += "&pending="    + pending;
+					params    += "&action="     + circ.action;
+					params    += "&timestamp="  + circ.timestamp;
+					params    += circ.patronbarcode ? "&cardnumber=" + circ.patronbarcode : "";
+					params    += "&barcode="    + circ.itembarcode;
+
+                    //FIXME: Only the first call makes it to Koha
+					var req = new XMLHttpRequest();
+					req.open("POST", url, false);
+					req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+					//req.setRequestHeader("Content-length", params.length);
+					req.send(params);
+					//req.setRequestHeader("Connection", "close");
+
+
+					if ( req.status == 200 ) {
+						//dbConn.executeSimpleSQL("UPDATE offlinecirc SET status='"+req.responseText+"' WHERE timestamp='"+statement.row.timestamp+"'");
+						console.log("200" + req.responseText);
+						updateTree();
+					}
+
+				}
+			});
+		};
+    };
+}
+
