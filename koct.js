@@ -1,4 +1,15 @@
-updateTable();
+var open = window.indexedDB.open('koct');
+
+// Create the schema
+open.onupgradeneeded = function() {
+    var db = open.result;
+    var store = db.createObjectStore("offlinecirc", {autoIncrement:true});
+};
+
+// Display data
+open.onsuccess = function() {
+    updateTable();
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     var keys = ['server', 'branchcode', 'login', 'password'];
@@ -55,12 +66,6 @@ function save(type) {
         case 'issue': 
 			var open = indexedDB.open('koct');
 
-			// Create the schema
-			open.onupgradeneeded = function() {
-				var db = open.result;
-				var store = db.createObjectStore("offlinecirc", {autoIncrement:true});
-			};
-
 			open.onsuccess = function() {
 				var db = open.result;
 				var tx = db.transaction("offlinecirc", "readwrite");
@@ -75,12 +80,6 @@ function save(type) {
         break;
         case 'return':
 			var open = indexedDB.open('koct');
-
-			// Create the schema
-			open.onupgradeneeded = function() {
-				var db = open.result;
-				var store = db.createObjectStore("offlinecirc", {autoIncrement:true});
-			};
 
 			open.onsuccess = function() {
 				var db = open.result;
@@ -172,7 +171,7 @@ function commit( pending ) {
 					if ( req.status == 200 ) {
 						//dbConn.executeSimpleSQL("UPDATE offlinecirc SET status='"+req.responseText+"' WHERE timestamp='"+statement.row.timestamp+"'");
 						console.log("200" + req.responseText);
-						updateTree();
+						updateTable();
 					}
 
 				}
