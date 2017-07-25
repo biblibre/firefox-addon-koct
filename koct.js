@@ -12,7 +12,7 @@ open.onsuccess = function() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var keys = ['server', 'branchcode', 'login', 'password'];
+    var keys = ['server', 'branchcode', 'login'];
     browser.storage.local.get(keys).then(function(result) {
         for (var key in result) {
             var message = document.createElement('div');
