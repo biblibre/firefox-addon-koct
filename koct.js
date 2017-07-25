@@ -60,6 +60,12 @@ document.querySelector('#erase').addEventListener('click', function(e) {
     clear();
 });
 
+document.querySelector('#erase-processed').addEventListener('click', function(e) {
+    e.preventDefault();
+    clearProcessed();
+});
+
+
 function save(type) {
     var currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
     switch (type) {
@@ -133,6 +139,23 @@ function clear() {
     updateTable();
 }
 
+function clearProcessed() {
+    var open = indexedDB.open('koct');
+    open.onsuccess = function() {
+        var db = open.result;
+        var tx = db.transaction("offlinecirc", "readwrite");
+        var store = tx.objectStore("offlinecirc");
+        var request = store.getAll();
+        for (var i = 0; i < results.length; i++) {
+            var circ = results[i];
+            if (circ.status === "Added." || circ.status === "Success.") {
+                var deleteRequest = store.delete(circ.id);
+            }
+        }
+    };
+    updateTable();
+}
+
 function commit( pending ) {
     var open = indexedDB.open('koct');
     open.onsuccess = function() {
@@ -151,7 +174,7 @@ function commit( pending ) {
                 console.log(results.length);
                 for (var i = 0; i < results.length; i++) {
                     var circ = results[i];
-                    if (circ.status !== "Added.") { 
+                    if (circ.status !== "Added." && circ.status !== "Success.") {
                         var params = "userid="      + config["login"];
                         params    += "&password="   + config["password"];
                         params    += "&branchcode=" + config["branchcode"];
