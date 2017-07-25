@@ -171,8 +171,8 @@ function commit( pending ) {
                 var url = config["server"] + "/cgi-bin/koha/offline_circ/service.pl";
                 results = request.result;
 
-                console.log(results.length);
                 for (var i = 0; i < results.length; i++) {
+                    showMessage("Processing... (" + (i + 1) + "/" + results.length + ")");
                     var circ = results[i];
                     if (circ.status !== "Added." && circ.status !== "Success.") {
                         var params = "userid="      + config["login"];
@@ -208,12 +208,16 @@ function commit( pending ) {
                     }
                 }
                 writeTx.oncomplete = function() {
-                    console.log("transaction completed");
+                    showMessage("Transaction completed");
                     updateTable();
                 }
 
             });
         };
     };
+}
+
+function showMessage(message) {
+    document.getElementById("current_status").innerHTML = "Current status: " + message + ".";
 }
 

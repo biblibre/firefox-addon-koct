@@ -1,12 +1,19 @@
-label {
-    display: block;
+body {
+    font-family: Sans-Serif;
 }
 
 table {
     border-collapse: collapse;
 }
 
+label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}
+
 table td,
 table th {
     border: 1px solid lightgrey;
 }
+
