@@ -3,6 +3,12 @@
     "name": "Koha Offline Circulation Tool",
     "version": "0.4.0",
 
+    "applications": {
+        "gecko": {
+        "id": "@temporarykoctid"
+        }
+    },
+
     "icons": {
         "48": "icons/koha-48.png",
         "96": "icons/koha-96.png"
