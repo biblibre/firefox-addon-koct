@@ -191,10 +191,11 @@ function commit( pending ) {
                         xhr.send(params);
                         //req.setRequestHeader("Connection", "close");
                         if ( xhr.status == 200 ) {
-                            console.log("200" + xhr.responseText);
+                            console.log("200: " + xhr.responseText);
                             circ.status = xhr.responseText;
                         } else {
-                              console.error(xhr.statusText);
+                            console.error(xhr.statusText);
+                            circ.status = "Error: " + xhr.statusText;
                         }
                     }
 
