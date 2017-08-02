@@ -12,28 +12,53 @@ open.onsuccess = function() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var keys = ['server', 'branchcode', 'login'];
-    browser.storage.local.get(keys).then(function(result) {
-        for (var key in result) {
-            var message = document.createElement('div');
-            if (!result[key]) {
-                message.innerHTML = 'Missing ' + key;
-            } else {
-                message.innerHTML = key + ': ' + result[key];
-            }
-            document.querySelector('#messages').appendChild(message);
-        }
-
-        var settingsLink = document.createElement('a');
-        settingsLink.innerHTML = 'Go to settings page';
-        settingsLink.href = '#';
-        document.querySelector('#messages').appendChild(settingsLink);
-        settingsLink.addEventListener('click', function() {
-            browser.runtime.openOptionsPage();
-        });
-    });
-
+    var keys = ['server', 'branchcode', 'login', 'password'];
+    browser.storage.local.get(keys).then(onConfigSuccess, onConfigError);
 });
+
+function onConfigSuccess(result) {
+    console.log(result);
+    var i = 0;
+    var messages = document.querySelector('#messages');
+    for (var key in result) {
+        var message = document.createElement('div');
+        if (!result[key]) {
+            message.innerHTML = 'Missing ' + key;
+        } else {
+            if (key != "password") {
+                message.innerHTML = key + ': ' + result[key];
+            } else {
+                message.innerHTML = "password: ***";
+            }
+            i++;
+        }
+        messages.appendChild(message);
+    }
+    if (i == 0) {
+        var message = document.createElement('div');
+        message.innerHTML = "It seems the connection to the Koha server has not been configured yet. Please proceed to the";
+        messages.appendChild(message);
+    } else if (i < 4) {
+        var message = document.createElement('div');
+        message.innerHTML = "It seems that " + (4 - i) + " parameters are missing. Please proceed to the";
+        messages.appendChild(message);
+    } else {
+        // Enable send button
+    }
+
+    var settingsLink = document.createElement('a');
+    settingsLink.innerHTML = 'Settings page';
+    settingsLink.href = '#';
+    document.querySelector('#messages').appendChild(settingsLink);
+    settingsLink.addEventListener('click', function() {
+        browser.runtime.openOptionsPage();
+    });
+}
+
+function onConfigError(error) {
+    console.log("error");
+    console.log(error);
+}
 
 document.querySelector('#checkout-form button[type="submit"]').addEventListener('click', function(e) {
     e.preventDefault();
@@ -117,7 +142,7 @@ function updateTable() {
         var store = tx.objectStore("offlinecirc");
         var request = store.getAll();
         request.onsuccess = function(evt) {
-            results = request.result;
+            var results = request.result;
             var tttbody = document.getElementById('transactions_table_tbody');
             tttbody.innerHTML = '';
             for (var i = 0; i < results.length; i++) {
@@ -171,11 +196,10 @@ function commit( pending ) {
         var request = store.getAll();
         request.onsuccess = function(evt) {
             var keys = ['server', 'branchcode', 'login', 'password'];
-            var prefs;
             browser.storage.local.get(keys).then(function(config) {
 
                 var url = config["server"] + "/cgi-bin/koha/offline_circ/service.pl";
-                results = request.result;
+                var results = request.result;
 
                 for (var i = 0; i < results.length; i++) {
                     showMessage("Processing... (" + (i + 1) + "/" + results.length + ")");
