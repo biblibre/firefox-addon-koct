@@ -65,6 +65,12 @@ document.querySelector('#erase-processed').addEventListener('click', function(e)
     clearProcessed();
 });
 
+document.querySelector('#clear-cardnumber').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('issue_patron_barcode').value = '';
+});
+
+
 
 function save(type) {
     var currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
