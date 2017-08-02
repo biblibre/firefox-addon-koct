@@ -1,4 +1,5 @@
 var open = window.indexedDB.open('koct');
+var configOK = false;
 
 // Create the schema
 open.onupgradeneeded = function() {
@@ -17,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function onConfigSuccess(result) {
-    console.log(result);
     var i = 0;
     var messages = document.querySelector('#messages');
     for (var key in result) {
@@ -43,7 +43,7 @@ function onConfigSuccess(result) {
         message.innerHTML = "It seems that " + (4 - i) + " parameters are missing. Please proceed to the";
         messages.appendChild(message);
     } else {
-        // Enable send button
+        configOK = true;
     }
 
     var settingsLink = document.createElement('a');
@@ -188,6 +188,10 @@ function clearProcessed() {
 }
 
 function commit( pending ) {
+    if (configOK != true) {
+        alert('Please configure the connection to Koha before sending data');
+        return;
+    }
     var open = indexedDB.open('koct');
     open.onsuccess = function() {
         var db = open.result;
