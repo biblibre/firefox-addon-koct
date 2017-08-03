@@ -36,22 +36,22 @@ function onConfigSuccess(result) {
         messages.appendChild(message);
     }
     commitType = result['commitType'];
-    if (commitType == "apply") document.getElementById("send-to-koha").innerHTML = "Apply to koha";
-    if (commitType == "send") document.getElementById("send-to-koha").innerHTML = "Send to koha";
+    if (commitType == "apply") document.getElementById("send-to-koha").innerHTML = browser.i18n.getMessage("Apply to koha");
+    if (commitType == "send") document.getElementById("send-to-koha").innerHTML = browser.i18n.getMessage("Send to koha");
     if (i == 0) {
-        var message = document.createElement('div');
-        message.innerHTML = "It seems the connection to the Koha server has not been configured yet. Please proceed to the";
+        var message = document.createElement('span');
+        message.innerHTML = browser.i18n.getMessage("notConfiguredMessage");
         messages.appendChild(message);
     } else if (i < 5) {
-        var message = document.createElement('div');
-        message.innerHTML = "It seems that " + (5 - i) + " parameters are missing. Please proceed to the";
+        var message = document.createElement('span');
+        message.innerHTML = browser.i18n.getMessage("missingParameters", 5 - i);
         messages.appendChild(message);
     } else {
         configOK = true;
     }
 
     var settingsLink = document.createElement('a');
-    settingsLink.innerHTML = 'Settings page';
+    settingsLink.innerHTML = browser.i18n.getMessage('settings page');
     settingsLink.href = '#';
     document.querySelector('#messages').appendChild(settingsLink);
     settingsLink.addEventListener('click', function() {
@@ -189,7 +189,7 @@ function clearProcessed() {
 
 function commit( pending ) {
     if (configOK != true) {
-        alert('Please configure the connection to Koha before sending data');
+        alert(browser.i18n.getMessage('configurationNeededAlert'));;
         return;
     }
     var open = indexedDB.open('koct');
@@ -229,7 +229,7 @@ function commit( pending ) {
                             circ.status = xhr.responseText;
                         } else {
                             console.error(xhr.statusText);
-                            circ.status = "Error: " + xhr.statusText;
+                            circ.status = browser.i18n.getMessage("Error: ") + xhr.statusText;
                         }
                     }
 
@@ -243,7 +243,7 @@ function commit( pending ) {
                     }
                 }
                 writeTx.oncomplete = function() {
-                    showMessage("Transaction completed");
+                    showMessage(browser.i18n.getMessage("transactionCompletedMessage"));
                     updateTable();
                 }
 
@@ -253,6 +253,6 @@ function commit( pending ) {
 }
 
 function showMessage(message) {
-    document.getElementById("current_status").innerHTML = "Current status: " + message + ".";
+    document.getElementById("current_status").innerHTML = browser.i18n.getMessage("currentStatusMessage") + " " + message + ".";
 }
 

@@ -1,0 +1,37 @@
+{
+  "extensionName": {
+    "message": "Outil de prêt secouru pour Koha",
+    "description": "Nom de l'extension."
+  },
+  "extensionDescription": {
+    "message": "Permet de faire des prêts et des retours et de les reverser plus tard dans Koha.",
+    "description": "Description de l'extension."
+  },
+  "Apply to koha": {
+    "message": "Appliquer à koha"
+  },
+  "Send to koha": {
+    "message": "Envoyer à koha"
+  },
+  "notConfiguredMessage": {
+    "message": "Il semblerait que la connexion à Koha ne soit pas encore configurée. Allez à la "
+  },
+  "missingParameters": {
+    "message": "Il semblerait que $1 paramètres soient manquants. Allez à la "
+  },
+  "settings page": {
+    "message": "page de configuration"
+  },
+  "configurationNeededAlert": {
+    "message": "Veuillez configurer la connexion à Koha avant d'envoyer des données."
+  },
+  "Error: ": {
+    "message": "Erreur: "
+  },
+  "transactionCompletedMessage": {
+    "message": "Transaction effectuée"
+  },
+  "currentStatusMessage": {
+    "message": "État actuel"
+  }
+}

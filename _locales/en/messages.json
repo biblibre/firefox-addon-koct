@@ -1,0 +1,37 @@
+{
+  "extensionName": {
+    "message": "Koha Offline Circulation Tool",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Allow to checkin and checkout documents and commit the changes later.",
+    "description": "Description of the extension."
+  },
+  "Apply to koha": {
+    "message": "Apply to koha"
+  },
+  "Send to koha": {
+    "message": "Send to koha"
+  },
+  "notConfiguredMessage": {
+    "message": "It seems the connection to the Koha server has not been configured yet. Please proceed to the "
+  },
+  "missingParameters": {
+    "message": "It seems that $1 parameters are missing. Please proceed to the "
+  },
+  "settings page": {
+    "message": "settings page"
+  },
+  "configurationNeededAlert": {
+    "message": "Please configure the connection to Koha before sending data."
+  },
+  "Error: ": {
+    "message": "Error: "
+  },
+  "transactionCompletedMessage": {
+    "message": "Transaction completed"
+  },
+  "currentStatusMessage": {
+    "message": "Current status"
+  }
+}
