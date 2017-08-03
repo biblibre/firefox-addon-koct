@@ -1,5 +1,6 @@
 var open = window.indexedDB.open('koct');
 var configOK = false;
+var commitType;
 
 // Create the schema
 open.onupgradeneeded = function() {
@@ -13,7 +14,7 @@ open.onsuccess = function() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var keys = ['server', 'branchcode', 'login', 'password'];
+    var keys = ['server', 'branchcode', 'login', 'password', 'commitType'];
     browser.storage.local.get(keys).then(onConfigSuccess, onConfigError);
 });
 
@@ -34,13 +35,16 @@ function onConfigSuccess(result) {
         }
         messages.appendChild(message);
     }
+    commitType = result['commitType'];
+    if (commitType == "apply") document.getElementById("send-to-koha").innerHTML = "Apply to koha";
+    if (commitType == "send") document.getElementById("send-to-koha").innerHTML = "Send to koha";
     if (i == 0) {
         var message = document.createElement('div');
         message.innerHTML = "It seems the connection to the Koha server has not been configured yet. Please proceed to the";
         messages.appendChild(message);
-    } else if (i < 4) {
+    } else if (i < 5) {
         var message = document.createElement('div');
-        message.innerHTML = "It seems that " + (4 - i) + " parameters are missing. Please proceed to the";
+        message.innerHTML = "It seems that " + (5 - i) + " parameters are missing. Please proceed to the";
         messages.appendChild(message);
     } else {
         configOK = true;
@@ -72,12 +76,8 @@ document.querySelector('#checkin-form button[type="submit"]').addEventListener('
 
 document.querySelector('#send-to-koha').addEventListener('click', function(e) {
     e.preventDefault();
-    commit(true);
-});
-
-document.querySelector('#apply-directly').addEventListener('click', function(e) {
-    e.preventDefault();
-    commit();
+    if (commitType == "apply") commit();
+    if (commitType == "send") commit(true);
 });
 
 document.querySelector('#erase').addEventListener('click', function(e) {

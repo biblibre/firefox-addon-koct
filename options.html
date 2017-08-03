@@ -6,12 +6,24 @@
     </head>
 
     <body>
-        <h2>Koha parameters</h2>
+        <h2>Parameters</h2>
         <form>
-            <label for="server">Server</label><br /> <input type="text" id="server"/><br /><br />
-            <label for="branchcode">Branchcode</label><br /> <input type="text" id="branchcode"/><br /><br />
-            <label for="login">Login</label><br /> <input type="text" id="login"/><br /><br />
-            <label for="password">Password</label><br /> <input type="text" id="password"/><br /><br />
+            <fieldset>
+                <legend>Koha connection</legend>
+                <label for="server">Server</label><br /> <input type="text" id="server"/><br /><br />
+                <label for="branchcode">Branchcode</label><br /> <input type="text" id="branchcode"/><br /><br />
+                <label for="login">Login</label><br /> <input type="text" id="login"/><br /><br />
+                <label for="password">Password</label><br /> <input type="text" id="password"/><br /><br />
+            </fieldset>
+            <br />
+            <fieldset>
+                <legend>Commit type</legend>
+                <input type="radio" name="commitType" id="commitTypeSend" value="send" checked="checked">
+                <label for="commitTypeSend">Send data to Koha (will require validation on koha's side)</label><br />
+                <input type="radio" name="commitType" id="commitTypeApply" value="apply">
+                <label for="commitTypeApply">Apply directly to Koha (will not require validation on koha's side)</label><br />
+            </fieldset>
+            <br />
             <button type="submit">Save</button>
         </form>
 
