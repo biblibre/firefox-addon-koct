@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Outil de prêt secouru pour Koha</title>
+        <link rel="icon" href="icons/koha-32.png"/>
+        <link rel="stylesheet" href="koct.css"/>
+    </head>
+
+    <body>
+        <h1>Outil de prêt secouru pour Koha</h1>
+
+        <div id="messages"></div>
+
+        <h2>Prêt</h2>
+        <form id="checkout-form">
+            <label for="issue_patron_barcode">Numéro de carte de l'usager</label>
+            <input type="text" id="issue_patron_barcode"/><br />
+            <label for="issue_item_barcode">Code-barre de l'exemplaire</label>
+            <input type="text" id="issue_item_barcode"/><br /><br />
+            <button type="submit">Prêt</button>
+            <button id="clear-cardnumber">Nouveau numéro de carte</button>
+        </form>
+
+        <h2>Retour</h2>
+        <form id="checkin-form">
+            <label for="return_item_barcode">Code-barre de l'exemplaire</label>
+            <input type="text" id="return_item_barcode"/><br /><br />
+            <button type="submit">Retour</button>
+        </form>
+
+        <h2>Transactions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date/Heure</th>
+                    <th>Action</th>
+                    <th>Numéro de carte</th>
+                    <th>Examplaire</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody id="transactions_table_tbody">
+            </tbody>
+        </table>
+        <br />
+        <div id="current_status">Statut courant: inactif.</div><br />
+        <button type="button" id="send-to-koha">Désactivé</button>
+        <button type="button" id="erase">Nettoyer</button>
+        <button type="button" id="erase-processed">Nettoyer les traités</button>
+        <script src="koct.js"></script>
+    </body>
+</html>
