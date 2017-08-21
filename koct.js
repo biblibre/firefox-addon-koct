@@ -93,6 +93,7 @@ document.querySelector('#erase-processed').addEventListener('click', function(e)
 document.querySelector('#clear-cardnumber').addEventListener('click', function(e) {
     e.preventDefault();
     document.getElementById('issue_patron_barcode').value = '';
+    document.getElementById('issue_patron_barcode').focus();
 });
 
 
