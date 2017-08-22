@@ -36,5 +36,35 @@
   },
   "mainPage": {
     "message": "koct-fr_FR.html"
+  },
+  "options_parameters": {
+    "message": "Paramètres"
+  },
+  "options_kohaConnection": {
+    "message": "Connexion à Koha"
+  },
+  "options_kohaServer": {
+    "message": "Serveur"
+  },
+  "options_branchcode": {
+    "message": "Branchcode"
+  },
+  "options_login": {
+    "message": "Nom d'utilisateur"
+  },
+  "options_password": {
+    "message": "Mot de passe"
+  },
+  "options_commitType": {
+    "message": "Type d'envoi"
+  },
+  "options_commitTypeSend": {
+    "message": "Soumettre les données à Koha (ceci nécessitera une validation côté Koha)"
+  },
+  "options_commitTypeApply": {
+    "message": "Appliquer directement à Koha (ceci ne nécessitera pas de validation côté Koha)"
+  },
+  "options_save": {
+    "message": "Sauver"
   }
 }

@@ -6,25 +6,25 @@
     </head>
 
     <body>
-        <h2>Parameters</h2>
+        <h2>__MSG_options_parameters__</h2>
         <form>
             <fieldset>
-                <legend>Koha connection</legend>
-                <label for="server">Server</label><br /> <input type="text" id="server"/><br /><br />
-                <label for="branchcode">Branchcode</label><br /> <input type="text" id="branchcode"/><br /><br />
-                <label for="login">Login</label><br /> <input type="text" id="login"/><br /><br />
-                <label for="password">Password</label><br /> <input type="text" id="password"/><br /><br />
+                <legend>__MSG_options_kohaConnection__</legend>
+                <label for="server">__MSG_options_kohaServer__</label><br /> <input type="text" id="server"/><br /><br />
+                <label for="branchcode">__MSG_options_branchcode__</label><br /> <input type="text" id="branchcode"/><br /><br />
+                <label for="login">__MSG_options_login__</label><br /> <input type="text" id="login"/><br /><br />
+                <label for="password">__MSG_options_password__</label><br /> <input type="text" id="password"/><br /><br />
             </fieldset>
             <br />
             <fieldset>
-                <legend>Commit type</legend>
+                <legend>__MSG_options_commitType__</legend>
                 <input type="radio" name="commitType" id="commitTypeSend" value="send" checked="checked">
-                <label for="commitTypeSend">Send data to Koha (will require validation on koha's side)</label><br />
+                <label for="commitTypeSend">__MSG_options_commitTypeSend__</label><br />
                 <input type="radio" name="commitType" id="commitTypeApply" value="apply">
-                <label for="commitTypeApply">Apply directly to Koha (will not require validation on koha's side)</label><br />
+                <label for="commitTypeApply">__MSG_options_commitTypeApply__</label><br />
             </fieldset>
             <br />
-            <button type="submit">Save</button>
+            <button type="submit">__MSG_options_save__</button>
         </form>
 
         <script src="options.js"></script>
