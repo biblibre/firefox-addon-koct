@@ -25,8 +25,14 @@
   "configurationNeededAlert": {
     "message": "Veuillez configurer la connexion à Koha avant d'envoyer des données."
   },
-  "Error: ": {
-    "message": "Erreur: "
+  "Error": {
+    "message": "Erreur"
+  },
+  "Local": {
+    "message": "Local"
+  },
+  "Sent": {
+    "message": "Envoyé"
   },
   "transactionCompletedMessage": {
     "message": "Transaction effectuée"

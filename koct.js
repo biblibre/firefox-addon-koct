@@ -2,6 +2,10 @@ var open = window.indexedDB.open('koct');
 var configOK = false;
 var commitType;
 
+const LOCAL = 0;
+const SENT_OK = 1;
+const SENT_KO = -1;
+
 // Create the schema
 open.onupgradeneeded = function() {
     var db = open.result;
@@ -119,7 +123,7 @@ function save(type) {
                 var store = tx.objectStore("offlinecirc");
                 var patronbarcode = document.getElementById('issue_patron_barcode').value;
                 var itembarcode = document.getElementById('issue_item_barcode').value;
-                store.add({timestamp: currentDate, action: "issue", patronbarcode: patronbarcode, itembarcode: itembarcode, status: "Local."});
+                store.add({timestamp: currentDate, action: "issue", patronbarcode: patronbarcode, itembarcode: itembarcode, status: LOCAL});
                 document.getElementById('issue_item_barcode').value = '';
                 document.getElementById('issue_item_barcode').focus();
             };
@@ -134,7 +138,7 @@ function save(type) {
                 var store = tx.objectStore("offlinecirc");
                 var patronbarcode = document.getElementById('issue_patron_barcode').value;
                 var itembarcode = document.getElementById('return_item_barcode').value;
-                store.add({timestamp: currentDate, action: "return", patronbarcode: '', itembarcode: itembarcode, status: "Local."});
+                store.add({timestamp: currentDate, action: "return", patronbarcode: '', itembarcode: itembarcode, status: LOCAL});
                 document.getElementById('return_item_barcode').value = '';
                 document.getElementById('return_item_barcode').focus();
             };
@@ -158,11 +162,25 @@ function updateTable() {
                 tttbody.innerHTML = '';
                 for (var i = 0; i < results.length; i++) {
                     var circ = results[i];
+                    var statusDisplay;
+
+                    switch (circ.status) {
+                        case LOCAL:
+                            statusDisplay = browser.i18n.getMessage("Local");
+                            break;
+                        case SENT_OK:
+                            statusDisplay = '<span class="ok">' + browser.i18n.getMessage("Sent") + '</span>';
+                            break;
+                        case SENT_KO:
+                            statusDisplay = '<span class="ko">' + browser.i18n.getMessage("Error") + '</span>';
+                            break;
+                    }
+
                     var content = "<tr><td>" + circ.timestamp + "</td>";
                     content += "<td>" + browser.i18n.getMessage(circ.action) + "</td>";
                     content += "<td>" + circ.patronbarcode + "</td>";
                     content += "<td>" + circ.itembarcode + "</td>";
-                    content += "<td>" + circ.status + "</td></tr>";
+                    content += "<td>" + statusDisplay + "</td></tr>";
                     tttbody.innerHTML += content;
                 }
             }
@@ -194,7 +212,7 @@ function clearProcessed() {
             if (results) {
                 for (var i = 0; i < results.length; i++) {
                     var circ = results[i];
-                    if (circ.status === "Added." || circ.status === "Success.") {
+                    if (circ.status == SENT_OK) {
                         var deleteRequest = store.delete(circ.id);
                     }
                 }
@@ -225,7 +243,7 @@ function commit( pending ) {
                 for (var i = 0; i < results.length; i++) {
                     showMessage("Processing... (" + (i + 1) + "/" + results.length + ")");
                     var circ = results[i];
-                    if (circ.status !== "Added." && circ.status !== "Success.") {
+                    if (circ.status != SENT_OK) {
                         var params = "userid="      + config["login"];
                         params    += "&password="   + config["password"];
                         params    += "&branchcode=" + config["branchcode"];
@@ -243,10 +261,10 @@ function commit( pending ) {
                         //req.setRequestHeader("Connection", "close");
                         if ( xhr.status == 200 ) {
                             console.log("200: " + xhr.responseText);
-                            circ.status = xhr.responseText;
+                            circ.status = SENT_OK;
                         } else {
                             console.error(xhr.statusText);
-                            circ.status = browser.i18n.getMessage("Error: ") + xhr.statusText;
+                            circ.status = SENT_KO;
                         }
                     }
 
@@ -255,7 +273,7 @@ function commit( pending ) {
                 var writeStore = writeTx.objectStore("offlinecirc");
                 for (var i = 0; i < results.length; i++) {
                     var circ = results[i];
-                    if (circ.status !== "Local.") {
+                    if (circ.status != LOCAL) {
                         var updateRequest = writeStore.put(circ);
                     }
                 }

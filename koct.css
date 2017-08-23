@@ -24,3 +24,10 @@ table th {
     border: 1px solid lightgrey;
 }
 
+.ok {
+    color: green;
+}
+
+.ko {
+    color: red;
+}
