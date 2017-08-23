@@ -159,7 +159,7 @@ function updateTable() {
                 for (var i = 0; i < results.length; i++) {
                     var circ = results[i];
                     var content = "<tr><td>" + circ.timestamp + "</td>";
-                    content += "<td>" + circ.action + "</td>";
+                    content += "<td>" + browser.i18n.getMessage(circ.action) + "</td>";
                     content += "<td>" + circ.patronbarcode + "</td>";
                     content += "<td>" + circ.itembarcode + "</td>";
                     content += "<td>" + circ.status + "</td></tr>";

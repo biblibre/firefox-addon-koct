@@ -66,5 +66,12 @@
   },
   "clearConfirmation": {
     "message": "Are you sure you want to delete unsent transactions?"
+  },
+  "issue": {
+    "message": "issue"
+  },
+  "return": {
+    "message": "return"
   }
+
 }
