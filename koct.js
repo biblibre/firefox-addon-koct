@@ -47,6 +47,8 @@ function onConfigSuccess(result) {
         message.innerHTML = browser.i18n.getMessage("missingParameters", 5 - i);
         messages.appendChild(message);
     } else {
+        document.getElementById("send-to-koha").disabled = false;
+        document.getElementById('issue_patron_barcode').focus();
         configOK = true;
     }
 
@@ -66,7 +68,12 @@ function onConfigError(error) {
 
 document.querySelector('#checkout-form button[type="submit"]').addEventListener('click', function(e) {
     e.preventDefault();
-    save("issue");
+    if (document.getElementById('issue_patron_barcode').value != '' &&
+        document.getElementById('issue_item_barcode').value != '') {
+        save("issue");
+    } else if (document.getElementById('issue_patron_barcode').value != '') {
+        document.getElementById('issue_item_barcode').focus();
+    }
 });
 
 document.querySelector('#checkin-form button[type="submit"]').addEventListener('click', function(e) {
@@ -82,7 +89,9 @@ document.querySelector('#send-to-koha').addEventListener('click', function(e) {
 
 document.querySelector('#erase').addEventListener('click', function(e) {
     e.preventDefault();
-    clear();
+    if (confirm(browser.i18n.getMessage('clearConfirmation'))) {
+        clear();
+    }
 });
 
 document.querySelector('#erase-processed').addEventListener('click', function(e) {
@@ -144,16 +153,18 @@ function updateTable() {
         var request = store.getAll();
         request.onsuccess = function(evt) {
             var results = request.result;
-            var tttbody = document.getElementById('transactions_table_tbody');
-            tttbody.innerHTML = '';
-            for (var i = 0; i < results.length; i++) {
-                var circ = results[i];
-                var content = "<tr><td>" + circ.timestamp + "</td>";
-                content += "<td>" + circ.action + "</td>";
-                content += "<td>" + circ.patronbarcode + "</td>";
-                content += "<td>" + circ.itembarcode + "</td>";
-                content += "<td>" + circ.status + "</td></tr>";
-                tttbody.innerHTML += content;
+            if (results) {
+                var tttbody = document.getElementById('transactions_table_tbody');
+                tttbody.innerHTML = '';
+                for (var i = 0; i < results.length; i++) {
+                    var circ = results[i];
+                    var content = "<tr><td>" + circ.timestamp + "</td>";
+                    content += "<td>" + circ.action + "</td>";
+                    content += "<td>" + circ.patronbarcode + "</td>";
+                    content += "<td>" + circ.itembarcode + "</td>";
+                    content += "<td>" + circ.status + "</td></tr>";
+                    tttbody.innerHTML += content;
+                }
             }
         };
     };
@@ -178,12 +189,17 @@ function clearProcessed() {
         var tx = db.transaction("offlinecirc", "readwrite");
         var store = tx.objectStore("offlinecirc");
         var request = store.getAll();
-        for (var i = 0; i < results.length; i++) {
-            var circ = results[i];
-            if (circ.status === "Added." || circ.status === "Success.") {
-                var deleteRequest = store.delete(circ.id);
+        request.onsuccess = function(evt) {
+            var results = request.result;
+            if (results) {
+                for (var i = 0; i < results.length; i++) {
+                    var circ = results[i];
+                    if (circ.status === "Added." || circ.status === "Success.") {
+                        var deleteRequest = store.delete(circ.id);
+                    }
+                }
             }
-        }
+        };
     };
     updateTable();
 }
