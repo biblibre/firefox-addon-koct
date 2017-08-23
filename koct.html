@@ -14,42 +14,50 @@
 
         <div id="messages"></div>
 
-        <h2>Checkout</h2>
-        <form id="checkout-form">
-            <label for="issue_patron_barcode">Patron barcode</label>
-            <input type="text" id="issue_patron_barcode"/><br />
-            <label for="issue_item_barcode">Item barcode</label>
-            <input type="text" id="issue_item_barcode"/><br /><br />
-            <button type="submit">Checkout</button>
-            <button id="clear-cardnumber">Clear cardnumber</button>
-        </form>
+        <div class="wrapper">
+            <div id="checkout-div">
+                <h2>Checkout</h2>
+                <form id="checkout-form">
+                    <label for="issue_patron_barcode">Patron barcode</label>
+                    <input type="text" id="issue_patron_barcode"/><br />
+                    <label for="issue_item_barcode">Item barcode</label>
+                    <input type="text" id="issue_item_barcode"/><br /><br />
+                    <button type="submit">Checkout</button>
+                    <button id="clear-cardnumber">Clear cardnumber</button>
+                </form>
+            </div>
 
-        <h2>Checkin</h2>
-        <form id="checkin-form">
-            <label for="return_item_barcode">Item barcode</label>
-            <input type="text" id="return_item_barcode"/><br /><br />
-            <button type="submit">Checkin</button>
-        </form>
+            <div id="checkin-div">
+                <h2>Checkin</h2>
+                <form id="checkin-form">
+                    <label for="return_item_barcode">Item barcode</label>
+                    <input type="text" id="return_item_barcode"/><br /><br />
+                    <button type="submit">Checkin</button>
+                </form>
+            </div>
 
-        <h2>Transactions</h2>
-        <div id="current_status">Current status: inactive.</div><br />
-        <button type="button" id="send-to-koha" disabled="disabled">Send</button>
-        <button type="button" id="erase">Clear</button>
-        <button type="button" id="erase-processed">Clear Added</button>
-        <br /><br />
-        <table>
-            <thead>
-                <tr>
-                    <th>Date/Time</th>
-                    <th>Action</th>
-                    <th>Cardnumber</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="transactions_table_tbody">
-            </tbody>
-        </table>
+            <div id="transactions-div">
+                <h2>Transactions</h2>
+                <div id="current_status">Current status: inactive.</div><br />
+                <button type="button" id="send-to-koha" disabled="disabled">Send</button>
+                <button type="button" id="erase">Clear</button>
+                <button type="button" id="erase-processed">Clear Added</button>
+                <br /><br />
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Action</th>
+                            <th>Cardnumber</th>
+                            <th>Item</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions_table_tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <script src="koct.js"></script>
     </body>
 </html>
