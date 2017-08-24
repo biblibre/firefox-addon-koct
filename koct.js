@@ -26,18 +26,9 @@ function onConfigSuccess(result) {
     var i = 0;
     var messages = document.querySelector('#messages');
     for (var key in result) {
-        var message = document.createElement('div');
-        if (!result[key]) {
-            message.innerHTML = 'Missing ' + key;
-        } else {
-            if (key != "password") {
-                message.innerHTML = key + ': ' + result[key];
-            } else {
-                message.innerHTML = "password: ***";
-            }
+        if (result[key]) {
             i++;
         }
-        messages.appendChild(message);
     }
     commitType = result['commitType'];
     if (commitType == "apply") document.getElementById("send-to-koha").innerHTML = browser.i18n.getMessage("Apply to koha");
@@ -56,13 +47,15 @@ function onConfigSuccess(result) {
         configOK = true;
     }
 
-    var settingsLink = document.createElement('a');
-    settingsLink.innerHTML = browser.i18n.getMessage('settings page');
-    settingsLink.href = '#';
-    document.querySelector('#messages').appendChild(settingsLink);
-    settingsLink.addEventListener('click', function() {
-        browser.runtime.openOptionsPage();
-    });
+    if (i < 5) {
+        var settingsLink = document.createElement('a');
+        settingsLink.innerHTML = browser.i18n.getMessage('settings page');
+        settingsLink.href = '#';
+        document.querySelector('#messages').appendChild(settingsLink);
+        settingsLink.addEventListener('click', function() {
+            browser.runtime.openOptionsPage();
+        });
+    }
 }
 
 function onConfigError(error) {
@@ -288,6 +281,6 @@ function commit( pending ) {
 }
 
 function showMessage(message) {
-    document.getElementById("current_status").innerHTML = browser.i18n.getMessage("currentStatusMessage") + " " + message + ".";
+    document.getElementById("current_status").innerHTML = browser.i18n.getMessage("currentStatusMessage") + ": " + message + ".";
 }
 
