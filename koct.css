@@ -22,6 +22,11 @@ label {
 table td,
 table th {
     border: 1px solid lightgrey;
+    padding: 5px;
+}
+
+table th {
+    border-bottom: 1px solid grey;
 }
 
 .ok {
@@ -39,7 +44,7 @@ table th {
 }
 
 #checkout-div, #checkin-div {
-    border: 1px solid #CCCCCC;
+    border: 1px solid lightgrey;
     padding: 10px;
     margin: 10px;
     align-self: center;
