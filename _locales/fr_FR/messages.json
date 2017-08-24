@@ -81,6 +81,8 @@
   },
   "return": {
     "message": "retour"
+  },
+  "processingMessage": {
+    "message": "Traitement..."
   }
-
 }

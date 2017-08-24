@@ -234,7 +234,7 @@ function commit( pending ) {
                 var results = request.result;
 
                 for (var i = 0; i < results.length; i++) {
-                    showMessage("Processing... (" + (i + 1) + "/" + results.length + ")");
+                    showMessage(browser.i18n.getMessage("processingMessage") + " (" + (i + 1) + "/" + results.length + ")");
                     var circ = results[i];
                     if (circ.status != SENT_OK) {
                         var params = "userid="      + config["login"];
