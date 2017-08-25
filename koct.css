@@ -1,15 +1,12 @@
 body {
     font-family: Sans-Serif;
-    position: relative;
     text-align:center;
+    margin: 10px;
 }
 
-#logo {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+h1 {
+    margin-top:40px;
 }
-
 label {
   display: inline-block;
   width: 250px;
@@ -18,8 +15,6 @@ label {
 
 table {
     border-collapse: collapse;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 table td,
@@ -40,16 +35,40 @@ table th {
     color: red;
 }
 
-.wrapper {
+.mainWrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 310px 1fr;
     align-items: start;
 }
 
+.wrapper {
+    text-align: left;
+}
+
+#logo {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    right: 0;
+}
+
+#issue_patron_barcode {
+    margin-bottom: 10px;
+}
+#checkoutCheckin-div {
+    display: inline-flex;
+}
 #checkout-div, #checkin-div {
-    border: 1px solid lightgrey;
     padding: 10px;
     margin: 10px;
-    align-self: center;
-    justify-self: center;
+    align-self: left;
+    justify-self: left;
+    text-align:right;
+}
+
+#checkout-div {
+    margin-right: 50px;
+}
+#leftColumn {
+    text-align:left;
 }
