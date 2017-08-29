@@ -75,7 +75,9 @@ document.querySelector('#checkout-form button[type="submit"]').addEventListener(
 
 document.querySelector('#checkin-form button[type="submit"]').addEventListener('click', function(e) {
     e.preventDefault();
-    save("return");
+    if (document.getElementById('return_item_barcode').value != '') {
+        save("return");
+    }
 });
 
 document.querySelector('#send-to-koha').addEventListener('click', function(e) {
