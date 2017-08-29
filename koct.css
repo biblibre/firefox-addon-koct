@@ -1,6 +1,5 @@
 body {
     font-family: Sans-Serif;
-    text-align:center;
     margin: 10px;
 }
 
@@ -10,7 +9,6 @@ h1 {
 label {
   display: inline-block;
   width: 250px;
-  text-align: right;
 }
 
 table {
@@ -41,10 +39,6 @@ table th {
     align-items: start;
 }
 
-.wrapper {
-    text-align: left;
-}
-
 #logo {
     position: fixed !important;
     top: 10px;
@@ -57,12 +51,18 @@ table th {
 }
 #checkoutCheckin-div {
     display: inline-flex;
+    margin:0;
+    padding:0;
 }
 #checkout-div, #checkin-div {
-    padding: 10px;
-    margin: 10px;
+    padding: 0;
+    margin: 0;
     align-self: left;
     justify-self: left;
+    text-align:left;
+}
+
+.buttons {
     text-align:right;
 }
 

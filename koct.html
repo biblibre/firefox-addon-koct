@@ -24,8 +24,10 @@
                             <input type="text" id="issue_patron_barcode"/><br />
                             <label for="issue_item_barcode">Item barcode</label>
                             <input type="text" id="issue_item_barcode"/><br /><br />
-                            <button type="submit">Checkout</button>
-                            <button id="clear-cardnumber">Clear cardnumber</button>
+                            <div class="buttons">
+                                <button type="submit">Checkout</button>
+                                <button id="clear-cardnumber">Clear cardnumber</button>
+                            </div>
                         </form>
                     </div>
 
@@ -34,7 +36,9 @@
                         <form id="checkin-form">
                             <label for="return_item_barcode">Item barcode</label>
                             <input type="text" id="return_item_barcode"/><br /><br />
-                            <button type="submit">Checkin</button>
+                            <div class="buttons">
+                                <button type="submit">Checkin</button>
+                            </div>
                         </form>
                     </div>
                 </div>
