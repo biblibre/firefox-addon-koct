@@ -6,6 +6,8 @@ const LOCAL = 0;
 const SENT_OK = 1;
 const SENT_KO = -1;
 
+function escapeHTML(str) { return str.replace(/[&"'<>]/g, (m) => ({ "&": "&amp;", '"': "&quot;", "'": "&#39;", "<": "&lt;", ">": "&gt;" })[m]); }
+
 // Create the schema
 open.onupgradeneeded = function() {
     var db = open.result;
@@ -31,15 +33,15 @@ function onConfigSuccess(result) {
         }
     }
     commitType = result['commitType'];
-    if (commitType == "apply") document.getElementById("send-to-koha").innerHTML = browser.i18n.getMessage("Apply to koha");
-    if (commitType == "send") document.getElementById("send-to-koha").innerHTML = browser.i18n.getMessage("Send to koha");
+    if (commitType == "apply") document.getElementById("send-to-koha").innerHTML = escapeHTML(browser.i18n.getMessage("Apply to koha"));
+    if (commitType == "send") document.getElementById("send-to-koha").innerHTML = escapeHTML(browser.i18n.getMessage("Send to koha"));
     if (i == 0) {
         var message = document.createElement('span');
-        message.innerHTML = browser.i18n.getMessage("notConfiguredMessage");
+        message.innerHTML = escapeHTML(browser.i18n.getMessage("notConfiguredMessage"));
         messages.appendChild(message);
     } else if (i < 5) {
         var message = document.createElement('span');
-        message.innerHTML = browser.i18n.getMessage("missingParameters", 5 - i);
+        message.innerHTML = escapeHTML(browser.i18n.getMessage("missingParameters", 5 - i));
         messages.appendChild(message);
     } else {
         document.getElementById("send-to-koha").disabled = false;
@@ -49,7 +51,7 @@ function onConfigSuccess(result) {
 
     if (i < 5) {
         var settingsLink = document.createElement('a');
-        settingsLink.innerHTML = browser.i18n.getMessage('settings page');
+        settingsLink.innerHTML = escapeHTML(browser.i18n.getMessage('settings page'));
         settingsLink.href = '#';
         document.querySelector('#messages').appendChild(settingsLink);
         settingsLink.addEventListener('click', function() {
@@ -161,21 +163,24 @@ function updateTable() {
 
                     switch (circ.status) {
                         case LOCAL:
-                            statusDisplay = browser.i18n.getMessage("Local");
+                            statusDisplay = escapeHTML(browser.i18n.getMessage("Local"));
                             break;
                         case SENT_OK:
-                            statusDisplay = '<span class="ok">' + browser.i18n.getMessage("Sent") + '</span>';
+                            statusDisplay = '<span class="ok">' + escapeHTML(browser.i18n.getMessage("Sent")) + '</span>';
                             break;
                         case SENT_KO:
-                            statusDisplay = '<span class="ko">' + browser.i18n.getMessage("Error") + '</span>';
+                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error")) + '</span>';
                             break;
                     }
 
                     var content = "<tr><td>" + circ.timestamp + "</td>";
-                    content += "<td>" + browser.i18n.getMessage(circ.action) + "</td>";
-                    content += "<td>" + circ.patronbarcode + "</td>";
-                    content += "<td>" + circ.itembarcode + "</td>";
+                    content += "<td>" + escapeHTML(browser.i18n.getMessage(circ.action)) + "</td>";
+                    content += "<td>" + escapeHTML(circ.patronbarcode) + "</td>";
+                    content += "<td>" + escapeHTML(circ.itembarcode) + "</td>";
+                    // escapeHTML is not needed here: content was previously escaped
                     content += "<td>" + statusDisplay + "</td></tr>";
+
+                    // All content was previously html escaped
                     tttbody.innerHTML += content;
                 }
             }
@@ -283,6 +288,6 @@ function commit( pending ) {
 }
 
 function showMessage(message) {
-    document.getElementById("current_status").innerHTML = browser.i18n.getMessage("currentStatusMessage") + ": " + message + ".";
+    document.getElementById("current_status").innerHTML = escapeHTML(browser.i18n.getMessage("currentStatusMessage")) + ": " + message + ".";
 }
 

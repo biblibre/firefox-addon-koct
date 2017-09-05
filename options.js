@@ -43,6 +43,7 @@ function localizeHtmlPage()
 
         if(valNewH != valStrH)
         {
+            // No need for html escaping here: this is not user-generated content, only translation
             obj.innerHTML = valNewH;
         }
     }
