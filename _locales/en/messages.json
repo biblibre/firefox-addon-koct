@@ -70,6 +70,9 @@
   "options_commitTypeApply": {
     "message": "Apply directly to Koha (will not require validation on koha's side)"
   },
+  "options_save": {
+    "message": "Save"
+  },
   "clearConfirmation": {
     "message": "Are you sure you want to delete unsent transactions?"
   },
