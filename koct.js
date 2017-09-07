@@ -261,7 +261,13 @@ function commit( pending ) {
                         //req.setRequestHeader("Connection", "close");
                         if ( xhr.status == 200 ) {
                             console.log("200: " + xhr.responseText);
-                            circ.status = SENT_OK;
+                            // Since Koha sends a 200 even if there is a problem (authentication failed for instance),
+                            // we have to check the output
+                            if (xhr.responseText == "Added." || xhr.responseText == "Success.") {
+                                circ.status = SENT_OK;
+                            } else {
+                                circ.status = SENT_KO;
+                            }
                         } else {
                             console.error(xhr.statusText);
                             circ.status = SENT_KO;
