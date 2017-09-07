@@ -169,7 +169,8 @@ function updateTable() {
                             statusDisplay = '<span class="ok">' + escapeHTML(browser.i18n.getMessage("Sent")) + '</span>';
                             break;
                         case SENT_KO:
-                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error") + ": " + browser.i18n.getMessage(circ.statusMessage)) + '</span>';
+                            var statusErrorMessage = browser.i18n.getMessage(circ.statusMessage) ? browser.i18n.getMessage(circ.statusMessage) : circ.statusMessage;
+                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error") + ": " + statusErrorMessage) + '</span>';
                             break;
                     }
 
@@ -272,6 +273,7 @@ function commit( pending ) {
                         } else {
                             console.error(xhr.statusText);
                             circ.status = SENT_KO;
+                            circ.statusMessage = xhr.statusText;
                         }
                     }
 
