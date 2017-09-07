@@ -169,7 +169,7 @@ function updateTable() {
                             statusDisplay = '<span class="ok">' + escapeHTML(browser.i18n.getMessage("Sent")) + '</span>';
                             break;
                         case SENT_KO:
-                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error")) + '</span>';
+                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error") + ": " + circ.statusMessage) + '</span>';
                             break;
                     }
 
@@ -267,6 +267,7 @@ function commit( pending ) {
                                 circ.status = SENT_OK;
                             } else {
                                 circ.status = SENT_KO;
+                                circ.statusMessage = xhr.responseText;
                             }
                         } else {
                             console.error(xhr.statusText);
