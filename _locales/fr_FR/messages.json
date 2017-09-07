@@ -65,10 +65,10 @@
     "message": "Type d'envoi"
   },
   "options_commitTypeSend": {
-    "message": "Soumettre les données à Koha (ceci nécessitera une validation côté Koha)"
+    "message": "Soumettre les données à Koha (un adminstrateur devra se charger de les appliquer)"
   },
   "options_commitTypeApply": {
-    "message": "Appliquer directement à Koha (ceci ne nécessitera pas de validation côté Koha)"
+    "message": "Appliquer directement à Koha"
   },
   "options_save": {
     "message": "Sauver"

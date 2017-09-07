@@ -65,10 +65,10 @@
     "message": "Commit Type"
   },
   "options_commitTypeSend": {
-    "message": "Send data to Koha (will require validation on koha's side)"
+    "message": "Send data to Koha (an administrator will have to apply the changes)"
   },
   "options_commitTypeApply": {
-    "message": "Apply directly to Koha (will not require validation on koha's side)"
+    "message": "Apply directly to Koha"
   },
   "options_save": {
     "message": "Save"
