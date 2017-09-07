@@ -84,5 +84,20 @@
   },
   "processingMessage": {
     "message": "Processing..."
+  },
+  "Authentication failed.": {
+    "message": "Authentication failed."
+  },
+  "Item not issued.": {
+    "message": "Item not issued."
+  },
+  "Item not found.": {
+    "message": "Item not found."
+  },
+  "Barcode not found.": {
+    "message": "Barcode not found."
+  },
+  "Borrower not found.": {
+    "message": "Borrower not found."
   }
 }

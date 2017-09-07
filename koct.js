@@ -169,7 +169,7 @@ function updateTable() {
                             statusDisplay = '<span class="ok">' + escapeHTML(browser.i18n.getMessage("Sent")) + '</span>';
                             break;
                         case SENT_KO:
-                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error") + ": " + circ.statusMessage) + '</span>';
+                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error") + ": " + browser.i18n.getMessage(circ.statusMessage)) + '</span>';
                             break;
                     }
 

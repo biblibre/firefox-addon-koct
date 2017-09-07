@@ -84,5 +84,20 @@
   },
   "processingMessage": {
     "message": "Traitement..."
+  },
+  "Authentication failed.": {
+    "message": "Échec d'authentification."
+  },
+  "Item not issued.": {
+    "message": "Exemplaire non prêté."
+  },
+  "Item not found.": {
+    "message": "Exemplaire non trouvé."
+  },
+  "Barcode not found.": {
+    "message": "Codebarre non trouvé."
+  },
+  "Borrower not found.": {
+    "message": "Usager non trouvé."
   }
 }
