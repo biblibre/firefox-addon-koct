@@ -1,0 +1,106 @@
+{
+  "extensionName": {
+    "message": "Koha - Gestione prestiti offline",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Consente la registrazione di prestiti e restituzioni e le invia a Koha successivamente.",
+    "description": "Description of the extension."
+  },
+  "Apply to koha": {
+    "message": "Applica a Koha"
+  },
+  "Send to koha": {
+    "message": "Spedisci a Koha"
+  },
+  "notConfiguredMessage": {
+    "message": "Sembra che la connessione a koha non si a ancora stata configurata. Si prega di "
+  },
+  "missingParameters": {
+    "message": "Sembra che machi il parametro $1. Si prega di "
+  },
+  "settings page": {
+    "message": "pagina delle impostazioni"
+  },
+  "configurationNeededAlert": {
+    "message": "Si prega di configurare la connessione a Koha prima di inviare i dati."
+  },
+  "Error": {
+    "message": "Errore"
+  },
+  "Local": {
+    "message": "Locale"
+  },
+  "Sent": {
+    "message": "Spedito"
+  },
+  "transactionCompletedMessage": {
+    "message": "Transazione completata"
+  },
+  "currentStatusMessage": {
+    "message": "Stato corrente"
+  },
+  "mainPage": {
+    "message": "koct-it_IT.html"
+  },
+  "options_parameters": {
+    "message": "Parametri"
+  },
+  "options_kohaConnection": {
+    "message": "Connessione a Koha"
+  },
+  "options_kohaServer": {
+    "message": "Server"
+  },
+  "options_branchcode": {
+    "message": "Codice biblioteca"
+  },
+  "options_login": {
+    "message": "Login"
+  },
+  "options_password": {
+    "message": "Password"
+  },
+  "options_commitType": {
+    "message": "Tipo di invio"
+  },
+  "options_commitTypeSend": {
+    "message": "Invia i dati a Koha (un amministratore dovrà applicare i cambiamenti)"
+  },
+  "options_commitTypeApply": {
+    "message": "Applica direttamente a Koha"
+  },
+  "options_save": {
+    "message": "Salva"
+  },
+  "clearConfirmation": {
+    "message": "Si è certi di voler cancellare le transazioni mai inoltrate?"
+  },
+  "issue": {
+    "message": "prestito"
+  },
+  "return": {
+    "message": "restituzione"
+  },
+  "processingMessage": {
+    "message": "In elaborazione..."
+  },
+  "Authentication failed.": {
+    "message": "Autenticazione fallita."
+  },
+  "Item not issued.": {
+    "message": "Copia non prestata."
+  },
+  "Item not found.": {
+    "message": "Copia non trovata."
+  },
+  "Barcode not found.": {
+    "message": "Copia non trovata."
+  },
+  "Borrower not found.": {
+    "message": "Utente non trovato."
+  },
+  "Internal server error": {
+    "message": "Errore interno del server"
+  }
+}
