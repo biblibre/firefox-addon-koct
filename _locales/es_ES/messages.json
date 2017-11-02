@@ -1,0 +1,106 @@
+{
+  "extensionName": {
+    "message": "Herramienta de circulación fuera de línea de Koha",
+    "description": "Nombre de la extensión"
+  },
+  "extensionDescription": {
+    "message": "Permite el préstamo y la devolución de documentos y confirma los cambios más tarde.",
+    "description": "Descripción de la extensión."
+  },
+  "Apply to koha": {
+    "message": "Aplicar a Koha"
+  },
+  "Send to koha": {
+    "message": "Enviar a Koha"
+  },
+  "notConfiguredMessage": {
+    "message": "Parece que la conexión con el servidor Koha aún no se ha configurado. Por favor diríjase a la "
+  },
+  "missingParameters": {
+    "message": "Parece que los parámetros $1 faltan. Por favor diríjase a la "
+  },
+  "settings page": {
+    "message": "página de configuración"
+  },
+  "configurationNeededAlert": {
+    "message": "Por favor, configure la conexión a Koha antes de enviar datos."
+  },
+  "Error": {
+    "message": "Error"
+  },
+  "Local": {
+    "message": "Local"
+  },
+  "Sent": {
+    "message": "Enviado"
+  },
+  "transactionCompletedMessage": {
+    "message": "Transacción completa"
+  },
+  "currentStatusMessage": {
+    "message": "Estado actual"
+  },
+  "mainPage": {
+    "message": "koct-es_ES.html"
+  },
+  "options_parameters": {
+    "message": "Parámetros"
+  },
+  "options_kohaConnection": {
+    "message": "Conexión Koha"
+  },
+  "options_kohaServer": {
+    "message": "Servidor"
+  },
+  "options_branchcode": {
+    "message": "Branchcode"
+  },
+  "options_login": {
+    "message": "Iniciar sesión"
+  },
+  "options_password": {
+    "message": "Contraseña"
+  },
+  "options_commitType": {
+    "message": "Tipo de transacción"
+  },
+  "options_commitTypeSend": {
+    "message": "Enviar datos a Koha (un administrador tendrá que aplicar los cambios)"
+  },
+  "options_commitTypeApply": {
+    "message": "Aplicar directamente a Koha"
+  },
+  "options_save": {
+    "message": "Guardar"
+  },
+  "clearConfirmation": {
+    "message": "¿Seguro que quiere eliminar las transacciones no enviadas?"
+  },
+  "issue": {
+    "message": "préstamo"
+  },
+  "return": {
+    "message": "devolución"
+  },
+  "processingMessage": {
+    "message": "Procesando..."
+  },
+  "Authentication failed.": {
+    "message": "Autenticación fallida."
+  },
+  "Item not issued.": {
+    "message": "Ítem no prestado."
+  },
+  "Item not found.": {
+    "message": "Ítem no encontrado."
+  },
+  "Barcode not found.": {
+    "message": "Ítem no encontrado."
+  },
+  "Borrower not found.": {
+    "message": "Usuario no encontrado."
+  },
+  "Internal server error": {
+    "message": "Error de servidor interno"
+  }
+}
