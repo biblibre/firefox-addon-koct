@@ -11,9 +11,19 @@
             <fieldset>
                 <legend>__MSG_options_kohaConnection__</legend>
                 <label for="server">__MSG_options_kohaServer__</label><br /> <input type="text" id="server"/><br /><br />
-                <label for="branchcode">__MSG_options_branchcode__</label><br /> <input type="text" id="branchcode"/><br /><br />
                 <label for="login">__MSG_options_login__</label><br /> <input type="text" id="login"/><br /><br />
                 <label for="password">__MSG_options_password__</label><br /> <input type="password" id="password"/><br /><br />
+            </fieldset>
+            <br />
+            <button id="testConfigButton">__MSG_options_test__</button>
+            <span id="testResultStatus"></span>
+            <span style="color:red" id="testResultError"></span>
+            <span style="color:green" id="testResultOk"></span>
+            <br />
+            <br />
+            <fieldset>
+                <legend>__MSG_options_kohaConfiguration__</legend>
+                <label for="branchcode">__MSG_options_branchcode__</label><br /><div id="branchcodesdiv"><input type="text" id="branchcode"/></div><br /><br />
             </fieldset>
             <br />
             <fieldset>
@@ -24,12 +34,8 @@
                 <label for="commitTypeApply">__MSG_options_commitTypeApply__</label><br />
             </fieldset>
             <br />
-            <button id="testConfigButton">__MSG_options_test__</button>
             <button type="submit">__MSG_options_save__</button>
         </form>
-        <span id="testResultStatus"></span>
-        <span style="color:red" id="testResultError"></span>
-        <span style="color:green" id="testResultOk"></span>
         <script src="options.js"></script>
     </body>
 </html>

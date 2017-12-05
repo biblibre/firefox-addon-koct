@@ -9,8 +9,36 @@ function saveOptions(e) {
     });
 }
 
+function updateBranches() {
+    var xhr = new XMLHttpRequest();
+    var url = document.querySelector('#server').value + "/api/v1/libraries";
+    xhr.open("GET", url, true);
+    xhr.onload = function(e) {
+        if (xhr.readyState == 4) {
+            if (xhr.status === 200) {
+                var branches = JSON.parse(xhr.responseText);
+                if (branches) {
+                    var branchSelect = '<select id="branchcode">';
+                    for (var key in branches) {
+                        var branch = branches[key];
+                        branchSelect += '<option value="' + branch.branchcode + '"';
+                        var branchcode = document.getElementById('branchcode');
+                        if (branch.branchcode == branchcode.value) {
+                            branchSelect += ' selected="selected"';
+                        }
+                        branchSelect += '">' + branch.branchname + '</option>';
+                    }
+                    branchSelect += '</select>';
+                    branchcodesdiv.innerHTML = branchSelect;
+                }
+            }
+        }
+    };
+    xhr.timeout = 10000;
+    xhr.send(null);
+}
+
 function testConfig() {
-    console.log("testConfig");
     testResultStatus.innerText = browser.i18n.getMessage("Testing...");
     testResultOk.innerText = "";
     testResultError.innerText = "";
@@ -28,9 +56,10 @@ function testConfig() {
                   testResultError.innerText = browser.i18n.getMessage("Configuration error: ") + browser.i18n.getMessage("Authentication failed.");
               } else {
                   testResultOk.innerText = browser.i18n.getMessage('Configuration ok');
+                  updateBranches();
               }
             } else {
-              testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + xhrStatus + " " + xhr.statusText + " " + xhr.responseText;
+              testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + xhr.status + " " + xhr.statusText + " " + xhr.responseText;
             }
         }
         testResultStatus.innerText = "";
@@ -56,7 +85,6 @@ function restoreOptions() {
     });
     browser.storage.local.get("commitType").then(function(result) {
 		var elements = document.getElementsByName('commitType');
-		console.log(result);
 		for (var i=0;i<elements.length;i++) {
 		  if(elements[i].value == result["commitType"]) {
 			elements[i].checked = true;
