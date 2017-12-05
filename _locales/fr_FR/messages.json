@@ -49,6 +49,9 @@
   "options_kohaConnection": {
     "message": "Connexion à Koha"
   },
+  "options_kohaConfiguration": {
+    "message": "Configuration de Koha"
+  },
   "options_kohaServer": {
     "message": "Serveur"
   },
