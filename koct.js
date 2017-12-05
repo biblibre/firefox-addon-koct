@@ -253,6 +253,7 @@ function commit( pending ) {
                         params    += "&timestamp="  + circ.timestamp;
                         params    += circ.patronbarcode ? "&cardnumber=" + circ.patronbarcode : "";
                         params    += "&barcode="    + circ.itembarcode;
+                        params    += "&nocookie=1";
 
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", url, false);

@@ -46,6 +46,7 @@ function testConfig() {
     var url = document.querySelector('#server').value + "/cgi-bin/koha/offline_circ/service.pl";
     var params = "userid=" + document.querySelector('#login').value;
     params += "&password=" + document.querySelector('#password').value;
+    params += "&nocookie=1";
     url += '?' + params;
     xhr.open("GET", url, true);
     xhr.onload = function(e) {
