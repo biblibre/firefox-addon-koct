@@ -73,6 +73,9 @@
   "options_save": {
     "message": "Sauver"
   },
+  "options_test": {
+    "message": "Tester la configuration"
+  },
   "clearConfirmation": {
     "message": "Êtes-vous sûr de vouloir supprimer les transactions non traitées ?"
   },
@@ -102,5 +105,20 @@
   },
   "Internal server error": {
     "message": "Erreur de serveur interne"
+  },
+   "Configuration error: ": {
+    "message": "Erreur de configuration: "
+  },
+  "host not found": {
+    "message": "Serveur non trouvé"
+  },
+  "Configuration ok": {
+    "message": "Configuration correcte"
+  },
+  "timeout": {
+    "message": "expiration du délai d'attente"
+  },
+  "Testing...": {
+    "message": "Configuration en cours de test..."
   }
 }

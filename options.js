@@ -9,6 +9,44 @@ function saveOptions(e) {
     });
 }
 
+function testConfig() {
+    console.log("testConfig");
+    testResultStatus.innerText = browser.i18n.getMessage("Testing...");
+    testResultOk.innerText = "";
+    testResultError.innerText = "";
+    var xhr = new XMLHttpRequest();
+    var url = document.querySelector('#server').value + "/cgi-bin/koha/offline_circ/service.pl";
+    var params = "userid=" + document.querySelector('#login').value;
+    params += "&password=" + document.querySelector('#password').value;
+    url += '?' + params;
+    xhr.open("GET", url, true);
+    xhr.onload = function(e) {
+        if (xhr.readyState == 4) {
+            if (xhr.status === 200) {
+              // For older koha versions where status is 200 even when authentication failed
+              if (xhr.responseText == "Authentication failed.") {
+                  testResultError.innerText = browser.i18n.getMessage("Configuration error: ") + browser.i18n.getMessage("Authentication failed.");
+              } else {
+                  testResultOk.innerText = browser.i18n.getMessage('Configuration ok');
+              }
+            } else {
+              testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + xhrStatus + " " + xhr.statusText + " " + xhr.responseText;
+            }
+        }
+        testResultStatus.innerText = "";
+    };
+    xhr.onerror = function (e) {
+      testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + browser.i18n.getMessage('host not found');
+      testResultStatus.innerText = "";
+    };
+    xhr.ontimeout = function () {
+      testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + browser.i18n.getMessage('timeout');
+      testResultStatus.innerText = "";
+    };
+    xhr.timeout = 10000;
+    xhr.send(null);
+}
+
 function restoreOptions() {
     var keys = ['server', 'branchcode', 'login', 'password'];
     browser.storage.local.get(keys).then(function(result) {
@@ -53,3 +91,4 @@ localizeHtmlPage();
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.querySelector('form').addEventListener('submit', saveOptions);
+document.getElementById('testConfigButton').addEventListener('click', testConfig);

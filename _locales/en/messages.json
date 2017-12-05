@@ -73,6 +73,9 @@
   "options_save": {
     "message": "Save"
   },
+  "options_test": {
+    "message": "Test configuration"
+  },
   "clearConfirmation": {
     "message": "Are you sure you want to delete unsent transactions?"
   },
@@ -102,5 +105,20 @@
   },
   "Internal server error": {
     "message": "Internal server error"
+  },
+  "Configuration error: ": {
+    "message": "Configuration error: "
+  },
+  "host not found": {
+    "message": "host not found"
+  },
+  "Configuration ok": {
+    "message": "Configuration ok"
+  },
+  "timeout": {
+    "message": "timeout"
+  },
+  "Testing...": {
+    "message": "Testing..."
   }
 }
