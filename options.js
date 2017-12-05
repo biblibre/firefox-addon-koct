@@ -28,7 +28,7 @@ function updateBranches() {
                             branchSelect += ' selected="selected"';
                             branchFound = 1;
                         }
-                        branchSelect += '">' + branch.branchname + '</option>';
+                        branchSelect += '">' + branch.branchname + ' [' + branch.branchcode + ']' + '</option>';
                     }
                     branchSelect += '</select>';
                     if (branchFound == 0) {
