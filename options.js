@@ -19,16 +19,21 @@ function updateBranches() {
                 var branches = JSON.parse(xhr.responseText);
                 if (branches) {
                     var branchSelect = '<select id="branchcode">';
+                    var branchFound = 0;
                     for (var key in branches) {
                         var branch = branches[key];
                         branchSelect += '<option value="' + branch.branchcode + '"';
                         var branchcode = document.getElementById('branchcode');
                         if (branch.branchcode == branchcode.value) {
                             branchSelect += ' selected="selected"';
+                            branchFound = 1;
                         }
                         branchSelect += '">' + branch.branchname + '</option>';
                     }
                     branchSelect += '</select>';
+                    if (branchFound == 0) {
+                        branchSelect += ' <span style="color:red">' + browser.i18n.getMessage("wrongBranchcode") + '</span>';
+                    }
                     branchcodesdiv.innerHTML = branchSelect;
                 }
             }

@@ -120,5 +120,8 @@
   },
   "Testing...": {
     "message": "Configuration en cours de test..."
+  },
+  "wrongBranchcode": {
+    "message": "Le branchcode que vous avez saisi n'existe pas dans Koha. Veuillez choisir une branche dans la liste déroulante."
   }
 }

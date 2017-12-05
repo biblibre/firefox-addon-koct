@@ -123,5 +123,8 @@
   },
   "Testing...": {
     "message": "Testing..."
+  },
+  "wrongBranchcode": {
+    "message": "The branchcode you entered does not match a valid Koha branchcode. Please select a valid branch from the list."
   }
 }
