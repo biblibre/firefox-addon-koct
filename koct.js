@@ -105,6 +105,12 @@ document.querySelector('#export').addEventListener('click', function(e) {
     exportData();
 });
 
+document.querySelector('#open-configuration').addEventListener('click', function(e) {
+    e.preventDefault();
+    browser.runtime.openOptionsPage();
+});
+
+
 document.querySelector('#clear-cardnumber').addEventListener('click', function(e) {
     e.preventDefault();
     document.getElementById('issue_patron_barcode').value = '';
