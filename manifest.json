@@ -18,7 +18,8 @@
     "permissions": [
         "tabs",
         "storage",
-        "<all_urls>"
+        "<all_urls>",
+        "downloads"
     ],
 
     "browser_action": {

@@ -100,13 +100,50 @@ document.querySelector('#erase-processed').addEventListener('click', function(e)
     clearProcessed();
 });
 
+document.querySelector('#export').addEventListener('click', function(e) {
+    e.preventDefault();
+    exportData();
+});
+
 document.querySelector('#clear-cardnumber').addEventListener('click', function(e) {
     e.preventDefault();
     document.getElementById('issue_patron_barcode').value = '';
     document.getElementById('issue_patron_barcode').focus();
 });
 
-
+function exportData() {
+    var open = indexedDB.open('koct');
+    open.onsuccess = function() {
+        var db = open.result;
+        var tx = db.transaction("offlinecirc", "readonly");
+        var store = tx.objectStore("offlinecirc");
+        var request = store.getAll();
+        request.onsuccess = function(evt) {
+            var results = request.result;
+            if (results) {
+                var content = "Version=1.0\tGenerator=koct-firefox\tGeneratorVersion=0.1\r\n";
+                for (var i = 0; i < results.length; i++) {
+                    var circ = results[i];
+                    content += circ.timestamp + "\t";
+                    content += circ.action + "\t";
+                    switch (circ.action) {
+                        case 'issue':
+                            content += circ.patronbarcode + "\t";
+                            content += circ.itembarcode + "\t";
+                        break;
+                        case 'return':
+                            content += circ.itembarcode + "\t";
+                        break;
+                    }
+                    content += "\r\n";
+                }
+                var blob = new Blob([content], {type: 'text/csv'});
+                objectURL = URL.createObjectURL(blob);
+                browser.downloads.download({url: objectURL});
+            }
+        }
+    }
+}
 
 function save(type) {
     var currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
