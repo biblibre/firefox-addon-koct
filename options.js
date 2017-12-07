@@ -1,3 +1,5 @@
+function escapeHTML(str) { return str.replace(/[&"'<>]/g, (m) => ({ "&": "&amp;", '"': "&quot;", "'": "&#39;", "<": "&lt;", ">": "&gt;" })[m]); }
+
 function saveOptions(e) {
     e.preventDefault();
     browser.storage.local.set({
@@ -22,18 +24,19 @@ function updateBranches() {
                     var branchFound = 0;
                     for (var key in branches) {
                         var branch = branches[key];
-                        branchSelect += '<option value="' + branch.branchcode + '"';
+                        branchSelect += '<option value="' + escapeHTML(branch.branchcode) + '"';
                         var branchcode = document.getElementById('branchcode');
                         if (branch.branchcode == branchcode.value) {
                             branchSelect += ' selected="selected"';
                             branchFound = 1;
                         }
-                        branchSelect += '">' + branch.branchname + ' [' + branch.branchcode + ']' + '</option>';
+                        branchSelect += '">' + escapeHTML(branch.branchname) + ' [' + escapeHTML(branch.branchcode) + ']' + '</option>';
                     }
                     branchSelect += '</select>';
                     if (branchFound == 0) {
                         branchSelect += ' <span style="color:red">' + browser.i18n.getMessage("wrongBranchcode") + '</span>';
                     }
+                    // All content was previously html escaped
                     branchcodesdiv.innerHTML = branchSelect;
                 }
             }
