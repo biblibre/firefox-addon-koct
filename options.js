@@ -8,6 +8,8 @@ function saveOptions(e) {
         login: document.querySelector('#login').value,
         password: document.querySelector('#password').value,
         commitType: document.querySelector('input[name="commitType"]:checked').value
+    }).then(function () {
+        document.getElementById('saveConfigButton').append(" ✓");
     });
 }
 
