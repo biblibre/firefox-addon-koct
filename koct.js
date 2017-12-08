@@ -145,7 +145,7 @@ function exportData() {
                 }
                 var blob = new Blob([content], {type: 'text/csv'});
                 objectURL = URL.createObjectURL(blob);
-                browser.downloads.download({url: objectURL});
+                browser.downloads.download({url: objectURL, filename: new Date().toLocaleFormat("%Y-%m-%d-%H-%M") + ".koc"});
             }
         }
     }
