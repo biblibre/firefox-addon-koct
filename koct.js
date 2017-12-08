@@ -152,7 +152,8 @@ function exportData() {
 }
 
 function save(type) {
-    var currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    var utcTimestamp = new Date().getTime();
+    var currentDate = new Date(utcTimestamp).toISOString().slice(0, 19).replace('T', ' ');
     switch (type) {
         case 'issue':
             var open = indexedDB.open('koct');
