@@ -8,7 +8,7 @@ function saveOptions(e) {
         password: document.querySelector('#password').value,
         commitType: document.querySelector('input[name="commitType"]:checked').value
     }).then(function () {
-        document.getElementById('saveConfigButton').append(" ✓");
+        document.getElementById('saveConfigButton').textContent = browser.i18n.getMessage("options_save") + " ✓";
     });
 }
 
