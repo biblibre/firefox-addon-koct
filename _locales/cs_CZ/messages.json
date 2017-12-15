@@ -1,0 +1,130 @@
+{
+  "extensionName": {
+    "message": "Koha Offline Circulation Tool",
+    "description": "Název rozšíření"
+  },
+  "extensionDescription": {
+    "message": "Umožňuje vracet a půjčovat dokumenty a změny uložit později.",
+    "description": "Popis rozšíření."
+  },
+  "Apply to koha": {
+    "message": "Aplikovat do Kohy"
+  },
+  "Send to koha": {
+    "message": "Odeslat do Kohy"
+  },
+  "notConfiguredMessage": {
+    "message": "Zdá se, že zatím není nakonfigurováno spojení k serveru Koha. It seems the connection to the Koha server has not been configured yet. Prosím přejděte do "
+  },
+  "missingParameters": {
+    "message": "It seems that $1 parameters are missing. Prosím přejděte do "
+  },
+  "settings page": {
+    "message": "Nastavení předvoleb"
+  },
+  "configurationNeededAlert": {
+    "message": "Před odesíláním dat prosím nejprve nakonfigurujte spojení do Kohy."
+  },
+  "Error": {
+    "message": "Chyba"
+  },
+  "Local": {
+    "message": "Místní"
+  },
+  "Sent": {
+    "message": "Odesláno"
+  },
+  "transactionCompletedMessage": {
+    "message": "Transakce dokončena"
+  },
+  "currentStatusMessage": {
+    "message": "Aktuální stav"
+  },
+  "mainPage": {
+    "message": "koct-cs_CZ.html"
+  },
+  "options_parameters": {
+    "message": "Parametry"
+  },
+  "options_kohaConnection": {
+    "message": "Spojení do Kohy"
+  },
+  "options_kohaConfiguration": {
+    "message": "Konfigurace Kohy"
+  },
+  "options_kohaServer": {
+    "message": "Server"
+  },
+  "options_branchcode": {
+    "message": "Kód knihovny"
+  },
+  "options_login": {
+    "message": "Uživatelské jméno"
+  },
+  "options_password": {
+    "message": "Heslo"
+  },
+  "options_commitType": {
+    "message": "Režim ukládání"
+  },
+  "options_commitTypeSend": {
+    "message": "Odesílat data do Kohy (administrátor bude muset změny ručně aplikovat)"
+  },
+  "options_commitTypeApply": {
+    "message": "Aplikovat přímo do Kohy"
+  },
+  "options_save": {
+    "message": "Uložit"
+  },
+  "options_test": {
+    "message": "Test spojení"
+  },
+  "clearConfirmation": {
+    "message": "Opravdu chcete smazat dosud neodeslané transakce?"
+  },
+  "issue": {
+    "message": "výpůjčka"
+  },
+  "return": {
+    "message": "vrácení"
+  },
+  "processingMessage": {
+    "message": "Probíhá zpracování..."
+  },
+  "Authentication failed.": {
+    "message": "Nepodařilo se ověřit uživatele."
+  },
+  "Item not issued.": {
+    "message": "Jednotka nebyla vypůjčena."
+  },
+  "Item not found.": {
+    "message": "Jednotka nebyla nalezena."
+  },
+  "Barcode not found.": {
+    "message": "Jednotka nebyla nalezena."
+  },
+  "Borrower not found.": {
+    "message": "Čtenář nebyl nalezen."
+  },
+  "Internal server error": {
+    "message": "Interní chyba serveru"
+  },
+  "Configuration error: ": {
+    "message": "Chyba konfigurace: "
+  },
+  "host not found": {
+    "message": "Server nebyl nalezen"
+  },
+  "Configuration ok": {
+    "message": "Spojení bylo úspěšné"
+  },
+  "timeout": {
+    "message": "čas vypršel"
+  },
+  "Testing...": {
+    "message": "Testuji..."
+  },
+  "wrongBranchcode": {
+    "message": "Zadaný kód knihovny neodpovídá žádnému známému kódu v této instalaci Kohy. Prosím vyberte platnou knihovnu ze seznamu."
+  }
+}
