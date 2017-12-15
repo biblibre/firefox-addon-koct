@@ -6,8 +6,6 @@ const LOCAL = 0;
 const SENT_OK = 1;
 const SENT_KO = -1;
 
-function escapeHTML(str) { return str.replace(/[&"'<>]/g, (m) => ({ "&": "&amp;", '"': "&quot;", "'": "&#39;", "<": "&lt;", ">": "&gt;" })[m]); }
-
 // Create the schema
 open.onupgradeneeded = function() {
     var db = open.result;
@@ -33,15 +31,15 @@ function onConfigSuccess(result) {
         }
     }
     commitType = result['commitType'];
-    if (commitType == "apply") document.getElementById("send-to-koha").innerHTML = escapeHTML(browser.i18n.getMessage("Apply to koha"));
-    if (commitType == "send") document.getElementById("send-to-koha").innerHTML = escapeHTML(browser.i18n.getMessage("Send to koha"));
+    if (commitType == "apply") document.getElementById("send-to-koha").innerText = browser.i18n.getMessage("Apply to koha");
+    if (commitType == "send") document.getElementById("send-to-koha").innerText = browser.i18n.getMessage("Send to koha");
     if (i == 0) {
         var message = document.createElement('span');
-        message.innerHTML = escapeHTML(browser.i18n.getMessage("notConfiguredMessage"));
+        message.innerText = browser.i18n.getMessage("notConfiguredMessage");
         messages.appendChild(message);
     } else if (i < 5) {
         var message = document.createElement('span');
-        message.innerHTML = escapeHTML(browser.i18n.getMessage("missingParameters", 5 - i));
+        message.innerText = browser.i18n.getMessage("missingParameters", 5 - i);
         messages.appendChild(message);
     } else {
         document.getElementById("send-to-koha").disabled = false;
@@ -51,7 +49,7 @@ function onConfigSuccess(result) {
 
     if (i < 5) {
         var settingsLink = document.createElement('a');
-        settingsLink.innerHTML = escapeHTML(browser.i18n.getMessage('settings page'));
+        settingsLink.innerText = browser.i18n.getMessage('settings page');
         settingsLink.href = '#';
         document.querySelector('#messages').appendChild(settingsLink);
         settingsLink.addEventListener('click', function() {
@@ -204,29 +202,38 @@ function updateTable() {
                 for (var i = 0; i < results.length; i++) {
                     var circ = results[i];
                     var statusDisplay;
+                    var statusErrorMessage;
 
                     switch (circ.status) {
                         case LOCAL:
-                            statusDisplay = escapeHTML(browser.i18n.getMessage("Local"));
+                            statusDisplay = browser.i18n.getMessage("Local");
                             break;
                         case SENT_OK:
-                            statusDisplay = '<span class="ok">' + escapeHTML(browser.i18n.getMessage("Sent")) + '</span>';
+                            statusDisplay = '<span class="ok">' + browser.i18n.getMessage("Sent") + '</span>';
                             break;
                         case SENT_KO:
-                            var statusErrorMessage = browser.i18n.getMessage(circ.statusMessage) ? browser.i18n.getMessage(circ.statusMessage) : circ.statusMessage;
-                            statusDisplay = '<span class="ko">' + escapeHTML(browser.i18n.getMessage("Error") + ": " + statusErrorMessage) + '</span>';
+                            statusErrorMessage = browser.i18n.getMessage(circ.statusMessage) ? browser.i18n.getMessage(circ.statusMessage) : circ.statusMessage;
+                            statusDisplay = '<span class="ko">' + browser.i18n.getMessage("Error") + ': <span id="statusErrorMessage' + i + '"></span></span>';
                             break;
                     }
 
-                    var content = "<tr><td>" + circ.timestamp + "</td>";
-                    content += "<td>" + escapeHTML(browser.i18n.getMessage(circ.action)) + "</td>";
-                    content += "<td>" + escapeHTML(circ.patronbarcode) + "</td>";
-                    content += "<td>" + escapeHTML(circ.itembarcode) + "</td>";
-                    // escapeHTML is not needed here: content was previously escaped
-                    content += "<td>" + statusDisplay + "</td></tr>";
+                    var content = '<tr><td id="timestamp' + i + '"></td>';
+                    content += '<td id="action' + i + '"></td>';
+                    content += '<td id="patronbarcode' + i + '"></td>';
+                    content += '<td id="itembarcode' + i + '"></td>';
 
-                    // All content was previously html escaped
+                    // statusDiplay is a non user-generated string (see previous switch)
+                    content += "<td>" + statusDisplay + "</td></tr>";
                     tttbody.innerHTML += content;
+
+                    // Now we fill our placeholders with innerText
+                    document.getElementById('timestamp' + i).innerText = circ.timestamp;
+                    document.getElementById('action' + i).innerText = browser.i18n.getMessage(circ.action);
+                    document.getElementById('patronbarcode' + i).innerText = circ.patronbarcode;
+                    document.getElementById('itembarcode' + i).innerText = circ.itembarcode;
+                    if (document.getElementById('statusErrorMessage' + i)) {
+                        document.getElementById('statusErrorMessage' + i).innerText = statusErrorMessage;
+                    }
                 }
             }
         };
@@ -342,6 +349,6 @@ function commit( pending ) {
 }
 
 function showMessage(message) {
-    document.getElementById("current_status").innerHTML = escapeHTML(browser.i18n.getMessage("currentStatusMessage")) + ": " + message + ".";
+    document.getElementById("current_status").innerText = browser.i18n.getMessage("currentStatusMessage") + ": " + message + ".";
 }
 

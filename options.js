@@ -1,4 +1,3 @@
-function escapeHTML(str) { return str.replace(/[&"'<>]/g, (m) => ({ "&": "&amp;", '"': "&quot;", "'": "&#39;", "<": "&lt;", ">": "&gt;" })[m]); }
 
 function saveOptions(e) {
     e.preventDefault();
@@ -24,22 +23,35 @@ function updateBranches() {
                 if (branches) {
                     var branchSelect = '<select id="branchcode">';
                     var branchFound = 0;
+                    var i = 0;
                     for (var key in branches) {
                         var branch = branches[key];
-                        branchSelect += '<option value="' + escapeHTML(branch.branchcode) + '"';
+                        branchSelect += '<option id="branchOption' + i + '" value=""';
                         var branchcode = document.getElementById('branchcode');
                         if (branch.branchcode == branchcode.value) {
                             branchSelect += ' selected="selected"';
                             branchFound = 1;
                         }
-                        branchSelect += '">' + escapeHTML(branch.branchname) + ' [' + escapeHTML(branch.branchcode) + ']' + '</option>';
+                        branchSelect += '></option>';
+                        i++;
                     }
                     branchSelect += '</select>';
                     if (branchFound == 0) {
                         branchSelect += ' <span style="color:red">' + browser.i18n.getMessage("wrongBranchcode") + '</span>';
                     }
-                    // All content was previously html escaped
+                    // branchSelect is a non user-generated string
                     branchcodesdiv.innerHTML = branchSelect;
+
+                    // Now we fill our placeholders with text
+                    i = 0;
+                    for (var key in branches) {
+                        var branch = branches[key];
+                        var selectoption = document.getElementById('branchOption' + i);
+                        selectoption.value = branch.branchcode;
+                        selectoption.text = branch.branchname +  ' [' + branch.branchcode + ']';
+                        i++;
+                    }
+
                 }
             }
         }
