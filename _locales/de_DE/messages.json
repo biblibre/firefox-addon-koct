@@ -1,0 +1,130 @@
+{
+  "extensionName": {
+    "message": "Koha Offline-Verbuchung",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Erlaubt Ausleihen und Rückgaben aufzuzeichnen und später in Koha einzuspielen.",
+    "description": "Description of the extension."
+  },
+  "Apply to koha": {
+    "message": "In Koha einspielen"
+  },
+  "Send to koha": {
+    "message": "An Koha senden"
+  },
+  "notConfiguredMessage": {
+    "message": "Die Verbindung zu Koha wurde noch nicht eingerichtet. Bitte konfigurieren Sie diese unter  "
+  },
+  "missingParameters": {
+    "message": "$1 Parameter fehlen. Bitte korrigieren Sie die "
+  },
+  "settings page": {
+    "message": "Einstellungen"
+  },
+  "configurationNeededAlert": {
+    "message": "Bitte konfigurieren Sie die Verbindungsdaten bevor Sie Daten senden."
+  },
+  "Error": {
+    "message": "Fehler"
+  },
+  "Local": {
+    "message": "Lokal"
+  },
+  "Sent": {
+    "message": "Gesendet"
+  },
+  "transactionCompletedMessage": {
+    "message": "Transaktion abgeschlossen"
+  },
+  "currentStatusMessage": {
+    "message": "Aktueller Status"
+  },
+  "mainPage": {
+    "message": "koct-de_DE.html"
+  },
+  "options_parameters": {
+    "message": "Parameter"
+  },
+  "options_kohaConnection": {
+    "message": "Koha-Verbindungsdaten"
+  },
+  "options_kohaConfiguration": {
+    "message": "Koha-Konfiguration"
+  },
+  "options_kohaServer": {
+    "message": "Server"
+  },
+  "options_branchcode": {
+    "message": "Bibliothekskürzel"
+  },
+  "options_login": {
+    "message": "Login"
+  },
+  "options_password": {
+    "message": "Passwort"
+  },
+  "options_commitType": {
+    "message": "Einspielung"
+  },
+  "options_commitTypeSend": {
+    "message": "Daten an Koha senden, Transaktionen werden anschließend in Koha eingespielt"
+  },
+  "options_commitTypeApply": {
+    "message": "Direkt in Koha einspielen und Transaktionen durchführen"
+  },
+  "options_save": {
+    "message": "Speichern"
+  },
+  "options_test": {
+    "message": "Konfiguration testen"
+  },
+  "clearConfirmation": {
+    "message": "Sind Sie sicher, dass Sie die ungesendeten Transaktionen löschen möchten?"
+  },
+  "issue": {
+    "message": "Ausleihe"
+  },
+  "return": {
+    "message": "Rückgabe"
+  },
+  "processingMessage": {
+    "message": "Daten werden gesendet..."
+  },
+  "Authentication failed.": {
+    "message": "Anmeldung fehlgeschlagen."
+  },
+  "Item not issued.": {
+    "message": "Exemplar nicht ausgeliehen."
+  },
+  "Item not found.": {
+    "message": "Exemplar nicht gefunden."
+  },
+  "Barcode not found.": {
+    "message": "Exemplar nicht gefunden."
+  },
+  "Borrower not found.": {
+    "message": "Benutzer nicht gefunden."
+  },
+  "Internal server error": {
+    "message": "Interner Server-Fehler"
+  },
+  "Configuration error: ": {
+    "message": "Konfigurationsfehler: "
+  },
+  "host not found": {
+    "message": "Host nicht gefunden"
+  },
+  "Configuration ok": {
+    "message": "Konfiguration ist korrekt"
+  },
+  "timeout": {
+    "message": "Timeout"
+  },
+  "Testing...": {
+    "message": "Test wird durchgeführt..."
+  },
+  "wrongBranchcode": {
+    "message": "Das angegebene Bibliothekskürzel ist nicht korrekt. Bitte wählen Sie ein gültiges Kürzel aus der Liste."
+  }
+}
