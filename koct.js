@@ -143,7 +143,13 @@ function exportData() {
                 }
                 var blob = new Blob([content], {type: 'text/csv'});
                 objectURL = URL.createObjectURL(blob);
-                browser.downloads.download({url: objectURL, filename: new Date().toLocaleFormat("%Y-%m-%d-%H-%M") + ".koc"});
+                var currentDate = new Date();
+                var twoDigitMonth=((currentDate.getMonth()+1)>=10)? (currentDate.getMonth()+1) : '0' + (currentDate.getMonth()+1);
+                var twoDigitDate=((currentDate.getDate())>=10)? (currentDate.getDate()) : '0' + (currentDate.getDate());
+                var twoDigitHours=((currentDate.getHours())>=10)? (currentDate.getHours()) : '0' + (currentDate.getHours());
+                var twoDigitMinutes=((currentDate.getMinutes())>=10)? (currentDate.getMinutes()) : '0' + (currentDate.getMinutes());
+                var createdDateTo = currentDate.getFullYear() + "-" + twoDigitMonth + "-" + twoDigitDate + "-" + twoDigitHours + "-" + twoDigitMinutes;
+                browser.downloads.download({url: objectURL, filename: createdDateTo + ".koc"});
             }
         }
     }
