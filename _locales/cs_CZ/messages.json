@@ -7,10 +7,10 @@
     "message": "Umožňuje vracet a půjčovat dokumenty a změny uložit později.",
     "description": "Popis rozšíření."
   },
-  "Apply to koha": {
+  "applyToKoha": {
     "message": "Aplikovat do Kohy"
   },
-  "Send to koha": {
+  "sendToKoha": {
     "message": "Odeslat do Kohy"
   },
   "notConfiguredMessage": {
@@ -19,7 +19,7 @@
   "missingParameters": {
     "message": "It seems that $1 parameters are missing. Prosím přejděte do "
   },
-  "settings page": {
+  "settingsPage": {
     "message": "Nastavení předvoleb"
   },
   "configurationNeededAlert": {
@@ -91,37 +91,37 @@
   "processingMessage": {
     "message": "Probíhá zpracování..."
   },
-  "Authentication failed.": {
+  "authenticationFailed": {
     "message": "Nepodařilo se ověřit uživatele."
   },
-  "Item not issued.": {
+  "itemNotIssued": {
     "message": "Jednotka nebyla vypůjčena."
   },
-  "Item not found.": {
+  "itemNotFound": {
     "message": "Jednotka nebyla nalezena."
   },
-  "Barcode not found.": {
+  "barcodeNotFound": {
     "message": "Jednotka nebyla nalezena."
   },
-  "Borrower not found.": {
+  "borrowerNotFound": {
     "message": "Čtenář nebyl nalezen."
   },
-  "Internal server error": {
+  "internalServerError": {
     "message": "Interní chyba serveru"
   },
-  "Configuration error: ": {
+  "configurationError": {
     "message": "Chyba konfigurace: "
   },
-  "host not found": {
+  "hostNotFound": {
     "message": "Server nebyl nalezen"
   },
-  "Configuration ok": {
+  "configurationOk": {
     "message": "Spojení bylo úspěšné"
   },
   "timeout": {
     "message": "čas vypršel"
   },
-  "Testing...": {
+  "testing": {
     "message": "Testuji..."
   },
   "wrongBranchcode": {

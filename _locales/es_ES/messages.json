@@ -7,10 +7,10 @@
     "message": "Permite el préstamo y la devolución de documentos y confirma los cambios más tarde.",
     "description": "Descripción de la extensión."
   },
-  "Apply to koha": {
+  "applyToKoha": {
     "message": "Aplicar a Koha"
   },
-  "Send to koha": {
+  "sendToKoha": {
     "message": "Enviar a Koha"
   },
   "notConfiguredMessage": {
@@ -19,7 +19,7 @@
   "missingParameters": {
     "message": "Parece que los parámetros $1 faltan. Por favor diríjase a la "
   },
-  "settings page": {
+  "settingsPage": {
     "message": "página de configuración"
   },
   "configurationNeededAlert": {
@@ -85,22 +85,22 @@
   "processingMessage": {
     "message": "Procesando..."
   },
-  "Authentication failed.": {
+  "authenticationFailed": {
     "message": "Autenticación fallida."
   },
-  "Item not issued.": {
+  "itemNotIssued": {
     "message": "Ítem no prestado."
   },
-  "Item not found.": {
+  "itemNotFound": {
     "message": "Ítem no encontrado."
   },
-  "Barcode not found.": {
+  "barcodeNotFound": {
     "message": "Ítem no encontrado."
   },
-  "Borrower not found.": {
+  "borrowerNotFound": {
     "message": "Usuario no encontrado."
   },
-  "Internal server error": {
+  "internalServerError": {
     "message": "Error de servidor interno"
   }
 }

@@ -7,10 +7,10 @@
     "message": "Consente la registrazione di prestiti e restituzioni e le invia a Koha successivamente.",
     "description": "Description of the extension."
   },
-  "Apply to koha": {
+  "applyToKoha": {
     "message": "Applica a Koha"
   },
-  "Send to koha": {
+  "sendToKoha": {
     "message": "Spedisci a Koha"
   },
   "notConfiguredMessage": {
@@ -19,7 +19,7 @@
   "missingParameters": {
     "message": "Sembra che machi il parametro $1. Si prega di "
   },
-  "settings page": {
+  "settingsPage": {
     "message": "pagina delle impostazioni"
   },
   "configurationNeededAlert": {
@@ -85,22 +85,22 @@
   "processingMessage": {
     "message": "In elaborazione..."
   },
-  "Authentication failed.": {
+  "authenticationFailed": {
     "message": "Autenticazione fallita."
   },
-  "Item not issued.": {
+  "itemNotIssued": {
     "message": "Copia non prestata."
   },
-  "Item not found.": {
+  "itemNotFound": {
     "message": "Copia non trovata."
   },
-  "Barcode not found.": {
+  "barcodeNotFound": {
     "message": "Copia non trovata."
   },
-  "Borrower not found.": {
+  "borrowerNotFound": {
     "message": "Utente non trovato."
   },
-  "Internal server error": {
+  "internalServerError": {
     "message": "Errore interno del server"
   }
 }

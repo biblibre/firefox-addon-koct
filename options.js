@@ -61,7 +61,7 @@ function updateBranches() {
 }
 
 function testConfig() {
-    testResultStatus.innerText = browser.i18n.getMessage("Testing...");
+    testResultStatus.innerText = browser.i18n.getMessage("testing");
     testResultOk.innerText = "";
     testResultError.innerText = "";
     var xhr = new XMLHttpRequest();
@@ -76,23 +76,23 @@ function testConfig() {
             if (xhr.status === 200) {
               // For older koha versions where status is 200 even when authentication failed
               if (xhr.responseText == "Authentication failed.") {
-                  testResultError.innerText = browser.i18n.getMessage("Configuration error: ") + browser.i18n.getMessage("Authentication failed.");
+                  testResultError.innerText = browser.i18n.getMessage("configurationError") + browser.i18n.getMessage("authenticationFailed");
               } else {
-                  testResultOk.innerText = browser.i18n.getMessage('Configuration ok');
+                  testResultOk.innerText = browser.i18n.getMessage('configurationOk');
                   updateBranches();
               }
             } else {
-              testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + xhr.status + " " + xhr.statusText + " " + xhr.responseText;
+              testResultError.innerText = browser.i18n.getMessage('configurationError') + xhr.status + " " + xhr.statusText + " " + xhr.responseText;
             }
         }
         testResultStatus.innerText = "";
     };
     xhr.onerror = function (e) {
-      testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + browser.i18n.getMessage('host not found');
+      testResultError.innerText = browser.i18n.getMessage('configurationError') + browser.i18n.getMessage('hostNotFound');
       testResultStatus.innerText = "";
     };
     xhr.ontimeout = function () {
-      testResultError.innerText = browser.i18n.getMessage('Configuration error: ') + browser.i18n.getMessage('timeout');
+      testResultError.innerText = browser.i18n.getMessage('configurationError') + browser.i18n.getMessage('timeout');
       testResultStatus.innerText = "";
     };
     xhr.timeout = 10000;

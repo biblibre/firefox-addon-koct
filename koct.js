@@ -31,8 +31,8 @@ function onConfigSuccess(result) {
         }
     }
     commitType = result['commitType'];
-    if (commitType == "apply") document.getElementById("send-to-koha").innerText = browser.i18n.getMessage("Apply to koha");
-    if (commitType == "send") document.getElementById("send-to-koha").innerText = browser.i18n.getMessage("Send to koha");
+    if (commitType == "apply") document.getElementById("send-to-koha").innerText = browser.i18n.getMessage("applyToKoha");
+    if (commitType == "send") document.getElementById("send-to-koha").innerText = browser.i18n.getMessage("sendToKoha");
     if (i == 0) {
         var message = document.createElement('span');
         message.innerText = browser.i18n.getMessage("notConfiguredMessage");
@@ -49,7 +49,7 @@ function onConfigSuccess(result) {
 
     if (i < 5) {
         var settingsLink = document.createElement('a');
-        settingsLink.innerText = browser.i18n.getMessage('settings page');
+        settingsLink.innerText = browser.i18n.getMessage('settingsPage');
         settingsLink.href = '#';
         document.querySelector('#messages').appendChild(settingsLink);
         settingsLink.addEventListener('click', function() {

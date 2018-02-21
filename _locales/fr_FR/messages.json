@@ -7,10 +7,10 @@
     "message": "Permet de faire des prêts et des retours et de les reverser plus tard dans Koha.",
     "description": "Description de l'extension."
   },
-  "Apply to koha": {
+  "applyToKoha": {
     "message": "Appliquer à koha"
   },
-  "Send to koha": {
+  "sendToKoha": {
     "message": "Envoyer à koha"
   },
   "notConfiguredMessage": {
@@ -19,7 +19,7 @@
   "missingParameters": {
     "message": "Il semblerait que $1 paramètres soient manquants. Allez à la "
   },
-  "settings page": {
+  "settingsPage": {
     "message": "page de configuration"
   },
   "configurationNeededAlert": {
@@ -91,37 +91,37 @@
   "processingMessage": {
     "message": "Traitement..."
   },
-  "Authentication failed.": {
+  "authenticationFailed": {
     "message": "Échec d'authentification."
   },
-  "Item not issued.": {
+  "itemNotIssued": {
     "message": "Exemplaire non prêté."
   },
-  "Item not found.": {
+  "itemNotFound": {
     "message": "Exemplaire non trouvé."
   },
-  "Barcode not found.": {
+  "barcodeNotFound": {
     "message": "Exemplaire non trouvé."
   },
-  "Borrower not found.": {
+  "borrowerNotFound": {
     "message": "Adhérent non trouvé."
   },
-  "Internal server error": {
+  "internalServerError": {
     "message": "Erreur de serveur interne"
   },
-   "Configuration error: ": {
+   "configurationError": {
     "message": "Erreur de configuration: "
   },
-  "host not found": {
+  "hostNotFound": {
     "message": "Serveur non trouvé"
   },
-  "Configuration ok": {
+  "configurationOk": {
     "message": "Configuration correcte"
   },
   "timeout": {
     "message": "expiration du délai d'attente"
   },
-  "Testing...": {
+  "testing": {
     "message": "Configuration en cours de test..."
   },
   "wrongBranchcode": {

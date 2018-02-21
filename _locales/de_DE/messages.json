@@ -7,10 +7,10 @@
     "message": "Erlaubt Ausleihen und Rückgaben aufzuzeichnen und später in Koha einzuspielen.",
     "description": "Description of the extension."
   },
-  "Apply to koha": {
+  "applyToKoha": {
     "message": "In Koha einspielen"
   },
-  "Send to koha": {
+  "sendToKoha": {
     "message": "An Koha senden"
   },
   "notConfiguredMessage": {
@@ -19,7 +19,7 @@
   "missingParameters": {
     "message": "$1 Parameter fehlen. Bitte korrigieren Sie die "
   },
-  "settings page": {
+  "settingsPage": {
     "message": "Einstellungen"
   },
   "configurationNeededAlert": {
@@ -91,37 +91,37 @@
   "processingMessage": {
     "message": "Daten werden gesendet..."
   },
-  "Authentication failed.": {
+  "authenticationFailed": {
     "message": "Anmeldung fehlgeschlagen."
   },
-  "Item not issued.": {
+  "itemNotIssued": {
     "message": "Exemplar nicht ausgeliehen."
   },
-  "Item not found.": {
+  "itemNotFound": {
     "message": "Exemplar nicht gefunden."
   },
-  "Barcode not found.": {
+  "barcodeNotFound": {
     "message": "Exemplar nicht gefunden."
   },
-  "Borrower not found.": {
+  "borrowerNotFound": {
     "message": "Benutzer nicht gefunden."
   },
-  "Internal server error": {
+  "internalServerError": {
     "message": "Interner Server-Fehler"
   },
-  "Configuration error: ": {
+  "configurationError": {
     "message": "Konfigurationsfehler: "
   },
-  "host not found": {
+  "hostNotFound": {
     "message": "Host nicht gefunden"
   },
-  "Configuration ok": {
+  "configurationOk": {
     "message": "Konfiguration ist korrekt"
   },
   "timeout": {
     "message": "Timeout"
   },
-  "Testing...": {
+  "testing": {
     "message": "Test wird durchgeführt..."
   },
   "wrongBranchcode": {
