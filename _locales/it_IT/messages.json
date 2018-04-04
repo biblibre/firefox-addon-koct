@@ -102,5 +102,8 @@
   },
   "internalServerError": {
     "message": "Errore interno del server"
+  },
+  "malformedURI": {
+    "message": "Malformed server address."
   }
 }

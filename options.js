@@ -14,7 +14,7 @@ function saveOptions(e) {
 
 function updateBranches() {
     var xhr = new XMLHttpRequest();
-    var url = document.querySelector('#server').value + "/api/v1/libraries";
+    var url = document.querySelector('#server').value.trim() + "/api/v1/libraries";
     xhr.open("GET", url, true);
     xhr.onload = function(e) {
         if (xhr.readyState == 4) {
@@ -65,12 +65,20 @@ function testConfig() {
     testResultOk.innerText = "";
     testResultError.innerText = "";
     var xhr = new XMLHttpRequest();
-    var url = document.querySelector('#server').value + "/cgi-bin/koha/offline_circ/service.pl";
+    var url = document.querySelector('#server').value.trim() + "/cgi-bin/koha/offline_circ/service.pl";
     var params = "userid=" + document.querySelector('#login').value;
     params += "&password=" + document.querySelector('#password').value;
     params += "&nocookie=1";
     url += '?' + params;
-    xhr.open("GET", url, true);
+    try {
+        urlObject = new URL(url);
+    }
+    catch(error) {
+        testResultError.innerText = browser.i18n.getMessage('configurationError') + browser.i18n.getMessage('malformedURI');
+        testResultStatus.innerText = "";
+        return;
+    }
+    xhr.open("GET", urlObject, true);
     xhr.onload = function(e) {
         if (xhr.readyState == 4) {
             if (xhr.status === 200) {

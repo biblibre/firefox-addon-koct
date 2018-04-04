@@ -126,5 +126,8 @@
   },
   "wrongBranchcode": {
     "message": "Das angegebene Bibliothekskürzel ist nicht korrekt. Bitte wählen Sie ein gültiges Kürzel aus der Liste."
+  },
+  "malformedURI": {
+    "message": "Malformed server address."
   }
 }

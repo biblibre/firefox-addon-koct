@@ -126,5 +126,8 @@
   },
   "wrongBranchcode": {
     "message": "Zadaný kód knihovny neodpovídá žádnému známému kódu v této instalaci Kohy. Prosím vyberte platnou knihovnu ze seznamu."
+  },
+  "malformedURI": {
+    "message": "Malformed server address."
   }
 }

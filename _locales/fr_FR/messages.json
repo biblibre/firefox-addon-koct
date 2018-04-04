@@ -126,5 +126,8 @@
   },
   "wrongBranchcode": {
     "message": "Le branchcode que vous avez saisi n'existe pas dans Koha. Veuillez choisir une branche dans la liste déroulante."
+  },
+  "malformedURI": {
+    "message": "L'adresse du serveur est malformée."
   }
 }
