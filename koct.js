@@ -17,6 +17,10 @@ open.onsuccess = function() {
     updateTable();
 }
 
+open.onerror = function(event) {
+    showMessage("Unable to open database: " + open.error);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     var keys = ['server', 'branchcode', 'login', 'password', 'commitType'];
     browser.storage.local.get(keys).then(onConfigSuccess, onConfigError);
