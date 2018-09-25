@@ -209,7 +209,7 @@ function updateTable() {
             if (results) {
                 var tttbody = document.getElementById('transactions_table_tbody');
                 tttbody.innerHTML = '';
-                for (var i = 0; i < results.length; i++) {
+                for (var i = results.length - 1; i >= 0; i--) {
                     var circ = results[i];
                     var statusDisplay;
                     var statusErrorMessage;
