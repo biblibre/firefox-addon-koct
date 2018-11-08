@@ -18,7 +18,7 @@ open.onsuccess = function() {
 }
 
 open.onerror = function(event) {
-    showMessage("Unable to open database: " + open.error);
+    showMessage("Unable to open database: " + open.error + " Error code: " + event.target.errorCode);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
