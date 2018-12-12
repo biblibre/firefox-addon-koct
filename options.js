@@ -113,6 +113,12 @@ function restoreOptions() {
         for (var key in result) {
             document.querySelector('#' + key).value = result[key];
         }
+
+        if (document.querySelector('#server').value.trim() != '' &&
+            document.querySelector('#login').value != '' &&
+            document.querySelector('#password').value != '') {
+            testConfig();
+        }
     });
     browser.storage.local.get("commitType").then(function(result) {
 		var elements = document.getElementsByName('commitType');
