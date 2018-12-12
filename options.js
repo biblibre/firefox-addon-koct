@@ -14,7 +14,7 @@ function saveOptions(e) {
 
 function updateBranches() {
     var xhr = new XMLHttpRequest();
-    var url = document.querySelector('#server').value.trim() + "/api/v1/libraries";
+    var url = document.querySelector('#server').value.trim() + "/api/v1/contrib/libraries-api/libraries";
     xhr.open("GET", url, true);
     xhr.onload = function(e) {
         if (xhr.readyState == 4) {
@@ -28,7 +28,7 @@ function updateBranches() {
                         var branch = branches[key];
                         branchSelect += '<option id="branchOption' + i + '" value=""';
                         var branchcode = document.getElementById('branchcode');
-                        if (branch.branchcode == branchcode.value) {
+                        if (branch.library_id == branchcode.value) {
                             branchSelect += ' selected="selected"';
                             branchFound = 1;
                         }
@@ -36,7 +36,7 @@ function updateBranches() {
                         i++;
                     }
                     branchSelect += '</select>';
-                    if (branchFound == 0) {
+                    if (branchFound == 0 && branchcode.value != '') {
                         branchSelect += ' <span style="color:red">' + browser.i18n.getMessage("wrongBranchcode") + '</span>';
                     }
                     // branchSelect is a non user-generated string
@@ -47,8 +47,8 @@ function updateBranches() {
                     for (var key in branches) {
                         var branch = branches[key];
                         var selectoption = document.getElementById('branchOption' + i);
-                        selectoption.value = branch.branchcode;
-                        selectoption.text = branch.branchname +  ' [' + branch.branchcode + ']';
+                        selectoption.value = branch.library_id;
+                        selectoption.text = branch.name +  ' [' + branch.library_id + ']';
                         i++;
                     }
 
