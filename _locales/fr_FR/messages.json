@@ -68,7 +68,7 @@
     "message": "Type d'envoi"
   },
   "options_commitTypeSend": {
-    "message": "Soumettre les données à Koha (un adminstrateur devra se charger de les appliquer)"
+    "message": "Soumettre les données à Koha (un administrateur devra se charger de les appliquer)"
   },
   "options_commitTypeApply": {
     "message": "Appliquer directement à Koha"
