@@ -65,7 +65,10 @@ function testConfig() {
     testResultOk.innerText = "";
     testResultError.innerText = "";
     var xhr = new XMLHttpRequest();
-    var url = document.querySelector('#server').value.trim() + "/cgi-bin/koha/offline_circ/service.pl";
+    var serverURL = new URL(document.querySelector('#server').value.trim());
+    serverURL = serverURL.origin;
+    document.querySelector('#server').value = serverURL;
+    var url = serverURL + "/cgi-bin/koha/offline_circ/service.pl";
     var params = "userid=" + document.querySelector('#login').value;
     params += "&password=" + document.querySelector('#password').value;
     params += "&nocookie=1";
