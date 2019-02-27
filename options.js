@@ -14,7 +14,7 @@ function saveOptions(e) {
 
 function updateBranches() {
     var xhr = new XMLHttpRequest();
-    var url = document.querySelector('#server').value.trim() + "/api/v1/contrib/libraries-api/libraries";
+    var url = document.querySelector('#server').value.trim() + "/api/v1/libraries";
     xhr.open("GET", url, true);
     xhr.onload = function(e) {
         if (xhr.readyState == 4) {
