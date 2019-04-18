@@ -72,7 +72,6 @@ function testConfig() {
     var params = "userid=" + document.querySelector('#login').value;
     params += "&password=" + document.querySelector('#password').value;
     params += "&nocookie=1";
-    url += '?' + params;
     try {
         urlObject = new URL(url);
     }
@@ -81,7 +80,9 @@ function testConfig() {
         testResultStatus.innerText = "";
         return;
     }
-    xhr.open("GET", urlObject, true);
+    xhr.open("POST", urlObject, true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send(params);
     xhr.onload = function(e) {
         if (xhr.readyState == 4) {
             if (xhr.status === 200) {
