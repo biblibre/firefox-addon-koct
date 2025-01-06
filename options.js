@@ -69,27 +69,7 @@ async function testConfig() {
     let authUrl = serverURL + "/cgi-bin/koha/svc/authentication";
     let preAuthResponse = await fetch(authUrl);
     let csrfToken = preAuthResponse.headers.get("csrf-token");
-    let preAuthResponseText = await preAuthResponse.text();
-    if (preAuthResponseText.indexOf('<status>ok') > -1) {
-        // we have already a valid session - a login with credentials would fail
-        // what if userid and password changed?
-        // so logout and do the preauth again
-        testResultStatus.innerText = "";
-        let logout = await fetch(serverURL + '/cgi-bin/koha/mainpage.pl?logout.x=1');
-        let preAuthResponse = await fetch(authUrl);
-        csrfToken = preAuthResponse.headers.get("csrf-token");
-    }
-
-    var url = serverURL + "/cgi-bin/koha/offline_circ/service.pl";
-    try {
-        urlObject = new URL(url);
-    }
-    catch (error) {
-        testResultError.innerText = browser.i18n.getMessage('configurationError') + browser.i18n.getMessage('malformedURI');
-        testResultStatus.innerText = "";
-        return;
-    }
-
+    
     let params = {
         method: "POST",
         credentials: "include",
@@ -109,10 +89,7 @@ async function testConfig() {
 
             testResultStatus.innerText = "";
             let content = await authResponse.text();
-            csrfToken = authResponse.headers.get("csrf-token");
-            // put authenticated token to storage as only THIS token works with authenticated session
-            browser.storage.local.set({ authenticatedToken: csrfToken });
-
+            
             if (content.indexOf('<status>ok') > -1) {
                 testResultOk.innerText = browser.i18n.getMessage('configurationOk');
                 updateBranches();

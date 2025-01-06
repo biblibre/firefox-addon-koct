@@ -285,17 +285,10 @@ function clearProcessed() {
 
 
 /**
- * Promise which returns a valid csrf token
+ * Promise which returns a valid csrf token if credentials are correct
  * @returns 
  */
 async function getCSRFToken() {
-
-    let authenticatedToken = null;
-    let result = await browser.storage.local.get("authenticatedToken");
-    if (result && result.authenticatedToken) {
-        authenticatedToken = result.authenticatedToken;
-    };
-
     var keys = ['server', 'login', 'password'];
     let config = await browser.storage.local.get(keys);
 
@@ -307,12 +300,8 @@ async function getCSRFToken() {
 
     // check if session is already valid
     if (preAuthResponseText.indexOf('<status>ok') > -1) {
-        // session is still authenticated but no token in storage 
-        // this should not happen
-        if (!authenticatedToken)
-            return Promise.reject();
-
-        return Promise.resolve(authenticatedToken);
+        // session is already valid, we can use token
+        return Promise.resolve(csrfToken);
     }
 
     const params = { method: "POST", credentials: "include" };
@@ -332,8 +321,6 @@ async function getCSRFToken() {
         console.log("getCSRFToken preauth: " + authResponseText);
 
         if (authResponseText.indexOf('<status>ok') > -1) {
-            // put authenticated token to storage as only THIS token works with authenticated session
-            browser.storage.local.set({ authenticatedToken: authResponse.headers.get("csrf-token") });
             return Promise.resolve(authResponse.headers.get("csrf-token"));
         }
 
