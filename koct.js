@@ -22,7 +22,7 @@ open.onerror = function (event) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var keys = ['server', 'branchcode', 'login', 'password', 'commitType'];
+    var keys = ['server', 'branchcode', 'login', 'password', 'commitType', 'version'];
     browser.storage.local.get(keys).then(onConfigSuccess, onConfigError);
 });
 
@@ -318,7 +318,7 @@ async function getCSRFToken() {
     try {
         let authResponse = await fetch(authUrl, params);
         let authResponseText = await authResponse.text();
-        console.log("getCSRFToken preauth: " + authResponseText);
+        //console.log("getCSRFToken preauth: " + authResponseText);
 
         if (authResponseText.indexOf('<status>ok') > -1) {
             return Promise.resolve(authResponse.headers.get("csrf-token"));
@@ -336,6 +336,105 @@ async function commit(pending) {
         alert(browser.i18n.getMessage('configurationNeededAlert'));;
         return;
     }
+
+    browser.storage.local.get('version').then(async function (version) {
+        if (version == 'withoutCSRF') {
+            commitWithoutCSRF(pending);
+        } else {
+            commitWithCSRF(pending);
+        }
+    });
+}
+
+async function commitWithoutCSRF(pending) {
+    var open = indexedDB.open('koct');
+    open.onsuccess = function() {
+        var db = open.result;
+        var readTx = db.transaction("offlinecirc", "readonly");
+        var store = readTx.objectStore("offlinecirc");
+        var request = store.getAll();
+        request.onsuccess = function(evt) {
+            var keys = ['server', 'branchcode', 'login', 'password'];
+            browser.storage.local.get(keys).then(function(config) {
+
+            var url = config['server'] + "/cgi-bin/koha/svc/authentication";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, false);
+            var params = "login_userid="      + config['login'];
+            params    += "&login_password="   + config['password'];
+            xhr.send(params);
+            csrfToken = xhr.getResponseHeader('Csrf-token');
+            cookie = xhr.getResponseHeader('Set-Cookie');
+
+            xhr.open("POST", url, false);
+            xhr.send(params);
+            //console.log(xhr.getResponseHeader('Csrf-token'));
+
+//                csrfToken = authenticate(config["server"], config["login"], config["password"]);
+
+                var url = config["server"] + "/cgi-bin/koha/offline_circ/service.pl";
+                var results = request.result;
+
+                for (var i = 0; i < results.length; i++) {
+                    showMessage(browser.i18n.getMessage("processingMessage") + " (" + (i + 1) + "/" + results.length + ")");
+                    var circ = results[i];
+                    if (circ.status != SENT_OK) {
+                        var params = "userid="      + config["login"];
+                        params    += "&password="   + config["password"];
+                        params    += "&branchcode=" + config["branchcode"];
+                        params    += "&pending="    + pending;
+                        params    += "&action="     + circ.action;
+                        params    += "&timestamp="  + circ.timestamp;
+                        params    += circ.patronbarcode ? "&cardnumber=" + circ.patronbarcode : "";
+                        params    += "&barcode="    + circ.itembarcode;
+                      //  params    += "&nocookie=1";
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", url, false);
+                        xhr.withCredentials = true;
+                        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                        xhr.setRequestHeader('Cookie', cookie);
+                        xhr.setRequestHeader("Csrf-token", csrfToken);
+                        //req.setRequestHeader("Content-length", params.length);
+                        xhr.send(params);
+                        //req.setRequestHeader("Connection", "close");
+                        if ( xhr.status == 200 ) {
+                            // console.log("200: " + xhr.responseText);
+                            // Since Koha sends a 200 even if there is a problem (authentication failed for instance),
+                            // we have to check the output
+                            if (xhr.responseText == "Added." || xhr.responseText == "Success.") {
+                                circ.status = SENT_OK;
+                            } else {
+                                circ.status = SENT_KO;
+                                circ.statusMessage = xhr.responseText;
+                            }
+                        } else {
+                            console.error(xhr.statusText);
+                            circ.status = SENT_KO;
+                            circ.statusMessage = xhr.statusText;
+                        }
+                    }
+
+                }
+                var writeTx = db.transaction("offlinecirc", "readwrite");
+                var writeStore = writeTx.objectStore("offlinecirc");
+                for (var i = 0; i < results.length; i++) {
+                    var circ = results[i];
+                    if (circ.status != LOCAL) {
+                        var updateRequest = writeStore.put(circ);
+                    }
+                }
+                writeTx.oncomplete = function() {
+                    showMessage(browser.i18n.getMessage("transactionCompletedMessage"));
+                    updateTable();
+                }
+
+            });
+        };
+    };
+}
+
+async function commitWithCSRF(pending) {
 
     let authenticatedToken;
     try {

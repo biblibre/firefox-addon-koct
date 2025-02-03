@@ -13,6 +13,10 @@
                 <label for="server">__MSG_options_kohaServer__</label><br /> <input type="text" size="50" id="server"/><br /><br />
                 <label for="login">__MSG_options_login__</label><br /> <input type="text" size="50" id="login"/><br /><br />
                 <label for="password">__MSG_options_password__</label><br /> <input type="password" size="50" id="password"/><br /><br />
+                <input type="radio" name="version" id="versionWithoutCSRF" value="withoutCSRF">
+                <label for="versionWithoutCSRF">Koha version &lt; 24.05</label><br />
+                <input type="radio" name="version" id="versionWithCSRF" value="withCSRF">
+                <label for="versionWithCSRF">Koha version &gt;= 24.05</label>
             </fieldset>
             <br />
             <button type="button" id="testConfigButton">__MSG_options_test__</button>

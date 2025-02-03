@@ -64,6 +64,9 @@
   "options_password": {
     "message": "Password"
   },
+  "options_version": {
+    "message": "Version"
+  },
   "options_commitType": {
     "message": "Commit Type"
   },
